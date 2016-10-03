@@ -2,7 +2,7 @@ require('dotenv').config({silent: true});
 module.exports = {
       development: {
         client: 'pg',
-        connection: 'postgres://localhost/puzzletastic'
+        connection: 'postgres://localhost/cyprus_copper'
       },
       production:{
         client: 'pg',
