@@ -23,29 +23,111 @@ angular.module('moscowMugs.controllers', [])
 })
 
 .controller('facebookInfoController', function($scope, $http){
-  // $scope.list;
-  //
-  // //   // New SDK (v2.x)
-  //    js.src = "//connect.facebook.net/en_US/sdk.js"
-  // /* make the API call */
-  // FB.api(
-  //   '/fbpageid/insights',
-  //   'GET',
-  //   {"metric":["page_actions_post_reactions_like_total","page_fans","page_fans_city","page_fans_gender_age","page_views_total","page_posts_impressions"]},
-  //   function(response) {
-  //       // Insert your code here
-  //       $scope.list = data.data;
-  //       console.log(response);
-  //   }
-  // );
+  $scope.list={};
 
-    $scope.list;
 
-    $http.jsonp('https://graph.facebook.com/v2.7/fbpageid/insights?metric%5B0%5D=page_actions_post_reactions_like_total&metric%5B1%5D=page_fans&metric%5B2%5D=page_fans_city&metric%5B3%5D=page_fans_gender_age&metric%5B4%5D=page_views_total&metric%5B5%5D=page_posts_impressions&access_token=EAACEdEose0cBACDMKnZCZCY15eST0yYvtnSV2K3EtbmPOyfmrp66UynDNXF5b0tDy5d8AuZAZBQcjEE5y8ul18l576ZA2d5hza1VZClPQNILeEZCq0CWVzJdNYm5kusp17asw5dm9cVgq6gqLFfxt2STZBifVxhLLuVPQzDkMGgIcwZDZD').then(function(data){
-      console.log(data.data[0]);
-    $scope.list = data.data[0];
-    })
+
+
+
+
+  //make a fb call with your personal /about/me
+  //then make a function that creates the
+  //insert settings here
+
+  $.ajax(settings).done(function (response) {if (response && !response.error) {
+    //data needed for the aggregate of users below
+    console.log(response.data);
+    var fbfans = response.data[5].values[2].value;
+    console.log(response.data[3]);
+    var fbdatafansgeo = response.data[3].values[2].value;
+    console.log(fbdatafansgeo);
+    var fbdataagegender = response.data[4].values[1].value
+  }
+
+    $scope.fbfans = fbfans;
+    $scope.fbdatatest = fbdataagegender;
+    console.log($scope.fbdatatest);
+    $scope.fbage = "i will put a graph here"
+    $scope.$apply();
+
+    //google charts region map //STILL NEED TO CHANGE TO COUNTRY
+    google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['City', 'Fans'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]
+        ]);
+        // var data = google.visualization.arrayToDataTable([
+        //   ['State', 'Users'],
+        //   ['Colorado', 30]
+        // ])
+        var options = {backgroundColor: "transparent"};
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        chart.draw(data, options);
+      }
+  });
+
+//for the ages and genders of fb users
+  // google.charts.load('current', {'packages':['corechart']});
+  //      google.charts.setOnLoadCallback(drawChart);
+  //  function drawChart() {
+  //    var data = google.visualization.arrayToDataTable([
+  //      ['Mon', 20, 28, 38, 45],
+  //      ['Tue', 31, 38, 55, 66],
+  //      ['Wed', 50, 55, 77, 80],
+  //      ['Thu', 77, 77, 66, 50],
+  //      ['Fri', 68, 66, 22, 15]
+  //      // Treat first row as data as well.
+  //    ], true);
+  //    var options = {
+  //      legend:'none'
+  //    };
+  //    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+  //    chart.draw(data, options);
+  //  }
+
+   //google charts on the ages and genders
+   google.charts.load("current", {packages:['corechart']});
+   google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ["Element", "Density", { role: "style" } ],
+       ["Copper", 8.94, "#b87333"],
+       ["Silver", 10.49, "silver"],
+       ["Gold", 19.30, "gold"],
+       ["Platinum", 21.45, "color: #e5e4e2"]
+     ]);
+
+     var view = new google.visualization.DataView(data);
+     view.setColumns([0, 1,
+                      { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                      2]);
+
+     var options = {
+       title: "Density of Precious Metals, in g/cm^3",
+       width: 360,
+       height: 400,
+       backgroundColor: "transparent",
+       bar: {groupWidth: "95%"},
+       legend: { position: "none" },
+     };
+     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+     chart.draw(view, options);
+ }
+
 })
+
 // *******************
 // *******************
 // products controller
@@ -68,12 +150,11 @@ angular.module('moscowMugs.controllers', [])
 
         var options = {
           pieHole: 0.4,
+          backgroundColor: 'transparent'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
-
 
       //d3 chart
       d3.selectAll("span")
@@ -100,7 +181,7 @@ angular.module('moscowMugs.controllers', [])
 
 // *******************
 // *******************
-// Google Analytics API controller
+// // Google Analytics API controller
 // .controller('GAapi', function ($scope, $http, $rootScope){
 //
 //   $scope.list;
@@ -108,6 +189,7 @@ angular.module('moscowMugs.controllers', [])
 //   $http.jsonp('https://www.googleapis.com/analytics/v3/data/ga?callback=JSON_CALLBACK').then(function(data){
 //     console.log(data);
 //     $scope.list = data.data;
+//     console.log($scope.list);
 //   })
 //
 //   $rootScope.$on('$stateChangeSuccess', function (event) {
@@ -115,17 +197,17 @@ angular.module('moscowMugs.controllers', [])
 //   });
 // })
 //
-// .run(function ($rootScope, $location) {
-//     $rootScope.$on('$routeChangeSuccess', function(){
-//         ga('send', 'pageview', $location.path());
-//     });
-// });
-//
-//
-// // *******************
-// // *******************
+// //
+// // // *******************
+// // // *******************
 // // Google Analytics API controller
 // .controller('facebookInfoController', function ($scope, $http, $rootScope, $window){
+//   $scope.list;
+//
+//   $http.jsonp('https://www.googleapis.com/analytics/v3/data/ga?callback=JSON_CALLBACK').then(function(data){
+//     console.log(data);
+//     $scope.list = data.data;
+//   })
 //
 //   // New SDK (v2.x)
 //   // js.src = "//connect.facebook.net/en_US/sdk.js";
@@ -148,16 +230,17 @@ angular.module('moscowMugs.controllers', [])
 // //       }
 // //     }
 // // );
-// };
-//
-//
-//
-//   // $scope.list;
-//
-//   // $http.jsonp('https://www.googleapis.com/analytics/v3/data/ga?callback=JSON_CALLBACK').then(function(data){
-//   //   console.log(data);
-//   //   $scope.list = data.data;
-//   // })
+// });
+
+
+
 //
 // })
 // ?callback=JSON_CALLBACK
+
+
+.run(function ($rootScope, $location) {
+  $rootScope.$on('$routeChangeSuccess', function(){
+    ga('send', 'pageview', $location.path());
+  });
+});

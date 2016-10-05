@@ -30,7 +30,28 @@ nav{
   margin-right: 2%;
   border: #E0E0E0 solid 1px;
   border-radius: 5px;
-  background-color: #252830;
+  /*background-color: #252830;*/
+  background-color: #2F333D;
+}
+.graphsfb2{
+  display: flex;
+  height: 300px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  border: #E0E0E0 solid 1px;
+  border-radius: 5px;
+  /*background-color: #252830;*/
+  /*background-color: #2B3137;*/
+  background-color: #2F333D;
+}
+.whitecirclefb{
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  border: 3px white solid;
 }
 #graph1fb{
   height: 150px;
@@ -57,13 +78,26 @@ nav{
   margin-top: 2%;
   border-radius: 5px;
 }
-/*#donutchart{
-  width: 300px;
-  height: 300px;
-  background-color: transparent;
-}*/
+#donutchart{
+  width: 200px;
+  height: 200px;
+}
+#fbfansbig{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  align-items: center;
+}
+.fbgraphtitle{
+  color: white;
+  font-size: 14px;
+  margin-left: 3%;
+}
 .linkstomove{
   float:right;
+}
+.linewhitegraph{
+  color: white;
 }
 #signinimg{
   height: 100%;
@@ -107,7 +141,9 @@ input.textbox{
   float: left;
   width: 15%;
   height: 1100px;
-  background-color: #EDEFF0;
+  /*background-color: #EDEFF0;*/
+  /*background-color:  #68C8C4;*/
+  background-color: #2F333D;
 }
 #admintitle{
   color: white;
@@ -166,13 +202,16 @@ input.textbox{
   margin-top: 15px;
   margin-bottom: -4px;
   margin-left: 2%;
+  color: white;
 }
 .cardcolumns{
   columns: 2;
   margin-top: 3%;
   margin-left: 2%;
   margin-right: 2%;
+  background-color: #2F333D;
 }
+
 .card-img-top.img{
   height: 50px;
   width: 50px;
@@ -180,10 +219,15 @@ input.textbox{
 .right{
   float: right;
   width:85%;
+  background-color: #252830;
+
 }
 .navleft{
   padding-right: 5%;
   margin-top: 40%;
+}
+.navfont{
+  color: white;
 }
 .circle{
   border-radius: 50%;
@@ -278,6 +322,9 @@ a#storelink{
 hr{
   margin-right: 2%;
   margin-left: 2%;
+  color: white;
+  /*border-top: 1px solid white;*/
+  border: white solid;
 }
 footer{
   background-color: #5AA498;
