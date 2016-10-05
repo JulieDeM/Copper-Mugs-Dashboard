@@ -24,24 +24,29 @@ angular.module('moscowMugs.controllers', [])
 
 .controller('facebookInfoController', function($scope, $http){
   $scope.list={};
-
-
-
-
-
-
   //make a fb call with your personal /about/me
   //then make a function that creates the
-  //insert settings here
+  // settings
+
 
   $.ajax(settings).done(function (response) {if (response && !response.error) {
     //data needed for the aggregate of users below
+    var fbfangeo=[];
     console.log(response.data);
     var fbfans = response.data[5].values[2].value;
+    console.log(fbfans);
+
     console.log(response.data[3]);
     var fbdatafansgeo = response.data[3].values[2].value;
     console.log(fbdatafansgeo);
-    var fbdataagegender = response.data[4].values[1].value
+    for (var i = 0; i < fbdatafansgeo.length; i++) {
+    fbfangeo.push(fbdatafansgeo[i]);
+    }
+    console.log("fbfangeo");
+    console.log(fbfangeo);
+
+    var fbdataagegender = response.data[4].values[1].value;
+
   }
 
     $scope.fbfans = fbfans;
@@ -75,56 +80,39 @@ angular.module('moscowMugs.controllers', [])
       }
   });
 
-//for the ages and genders of fb users
-  // google.charts.load('current', {'packages':['corechart']});
-  //      google.charts.setOnLoadCallback(drawChart);
-  //  function drawChart() {
-  //    var data = google.visualization.arrayToDataTable([
-  //      ['Mon', 20, 28, 38, 45],
-  //      ['Tue', 31, 38, 55, 66],
-  //      ['Wed', 50, 55, 77, 80],
-  //      ['Thu', 77, 77, 66, 50],
-  //      ['Fri', 68, 66, 22, 15]
-  //      // Treat first row as data as well.
-  //    ], true);
-  //    var options = {
-  //      legend:'none'
-  //    };
-  //    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
-  //    chart.draw(data, options);
-  //  }
+//google chart for the fb users -- age and gender
+ google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age Range', 'Males', 'Females'],
+          ['18-24', 8, 10],
+          ['25-34', 44, 58],
+          ['35-44', 37, 35],
+          ['45-54', 2, 10],
+          ['55-64', 1, 20],
+        ]);
 
-   //google charts on the ages and genders
-   google.charts.load("current", {packages:['corechart']});
-   google.charts.setOnLoadCallback(drawChart);
-   function drawChart() {
-     var data = google.visualization.arrayToDataTable([
-       ["Element", "Density", { role: "style" } ],
-       ["Copper", 8.94, "#b87333"],
-       ["Silver", 10.49, "silver"],
-       ["Gold", 19.30, "gold"],
-       ["Platinum", 21.45, "color: #e5e4e2"]
-     ]);
+        var options = {
+          chart: {
+            title: 'Age of Facebook Fans'
+          },
+          annotations: {
+            textStyle: {
+              fontName: 'Times-Roman',
+              fontSize: 18,
+              bold: true,
+              italic: true,
+              // The color of the text.
+              color: '#871b47'
+              }
+            },
+            backgroundColor: "transparent"
+        };
 
-     var view = new google.visualization.DataView(data);
-     view.setColumns([0, 1,
-                      { calc: "stringify",
-                        sourceColumn: 1,
-                        type: "string",
-                        role: "annotation" },
-                      2]);
-
-     var options = {
-       title: "Density of Precious Metals, in g/cm^3",
-       width: 360,
-       height: 400,
-       backgroundColor: "transparent",
-       bar: {groupWidth: "95%"},
-       legend: { position: "none" },
-     };
-     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-     chart.draw(view, options);
- }
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        chart.draw(data, options);
+      }
 
 })
 

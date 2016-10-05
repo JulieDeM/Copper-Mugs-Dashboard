@@ -209,9 +209,10 @@ input.textbox{
   margin-top: 3%;
   margin-left: 2%;
   margin-right: 2%;
+}
+.card{
   background-color: #2F333D;
 }
-
 .card-img-top.img{
   height: 50px;
   width: 50px;
@@ -318,13 +319,15 @@ a#storelink{
   margin-left: 2%;
   margin-right: 2%;
   margin-bottom: 1.5%;
+  background-color: #2F333D;
 }
 hr{
   margin-right: 2%;
   margin-left: 2%;
   color: white;
-  /*border-top: 1px solid white;*/
-  border: white solid;
+  border-top: 1px solid white;
+  border: white solid 1px;
+  border: white 1px solid;
 }
 footer{
   background-color: #5AA498;
