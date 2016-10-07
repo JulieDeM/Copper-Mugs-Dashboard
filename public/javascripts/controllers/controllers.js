@@ -22,36 +22,70 @@ angular.module('moscowMugs.controllers', [])
 
 })
 
+// .controller('facebookInfoController', function($scope, $http, envService){
+//   var environment = envService.get();
+//   // envService.set('production');
+//   var fbpageid = envService.read('fbpageid');//gets the fb app id
+//   console.log("fbpageid");
+//   console.log(fbpageid);
+//   var apiUrl = envService.read('apiUrl'); //gets the fb access token
 .controller('facebookInfoController', function($scope, $http){
+
   $scope.list={};
   //make a fb call with your personal /about/me
   //then make a function that creates the
   // settings
 
 
+
   $.ajax(settings).done(function (response) {if (response && !response.error) {
     //data needed for the aggregate of users below
-    var fbfangeo=[];
-    console.log(response.data);
-    var fbfans = response.data[5].values[2].value;
-    console.log(fbfans);
-
-    console.log(response.data[3]);
-    var fbdatafansgeo = response.data[3].values[2].value;
-    console.log(fbdatafansgeo);
-    for (var i = 0; i < fbdatafansgeo.length; i++) {
-    fbfangeo.push(fbdatafansgeo[i]);
-    }
-    console.log("fbfangeo");
-    console.log(fbfangeo);
-
     var fbdataagegender = response.data[4].values[1].value;
-
+    var fbfans = response.data[5].values[2].value;
+    for (var key in fbdataagegender) {
+      if (fbdataagegender.hasOwnProperty(key)) {
+        console.log(key + " -> " + fbdataagegender[key]);
+      }
+    }
+    var fbfangeo=[];
   }
+    // var fbdatafansgeo = response.data[3].values[2].value;
+  // }
+//   $.each(obj, function(key, value) {
+//     console.log(key, value);
+// });
+//
+// //
+var obj = { first: "John", last: "Doe" };
+
+Object.keys(obj).forEach(function(key) {
+    // console.log(key, obj[key]);
+    console.log(key, obj[key]);
+
+});
+
+
+//gets the key and object pairs for fbdata and gender
+var bigAr = [];
+Object.keys(fbdataagegender).forEach(function fbgen (key) {
+  var smallAr = [];
+    // console.log(key, obj[key]);
+    // console.log(key, fbdataagegender[key]);
+    var key = key;
+    smallAr.push(key)
+    smallAr.push(fbdataagegender[key])
+    bigAr.push(smallAr)
+    // console.log(bigAr);
+});
+// console.log(smallAr);
+console.log(bigAr);
+bigAr.sort()
+console.log(bigAr);
+
 
     $scope.fbfans = fbfans;
-    $scope.fbdatatest = fbdataagegender;
-    console.log($scope.fbdatatest);
+    // $scope.fbdatatest = fbdataagegender;
+    // console.log($scope.fbdatatest);
     $scope.fbage = "i will put a graph here"
     $scope.$apply();
 
@@ -60,6 +94,7 @@ angular.module('moscowMugs.controllers', [])
       google.charts.setOnLoadCallback(drawRegionsMap);
 
       function drawRegionsMap() {
+
 
         var data = google.visualization.arrayToDataTable([
           ['City', 'Fans'],
@@ -90,24 +125,30 @@ angular.module('moscowMugs.controllers', [])
           ['25-34', 44, 58],
           ['35-44', 37, 35],
           ['45-54', 2, 10],
-          ['55-64', 1, 20],
+          ['55-64', 1, 20]
+          // for (var i = 0; i < bigAr.length; i++) {
+          //   bigAr[i]
+          //   console.log(bigAr[i]);
+          // }
+          // bigAr[0], bigAr[1]
         ]);
 
         var options = {
+          backgroundColor: 'transparent',
           chart: {
             title: 'Age of Facebook Fans'
+
           },
           annotations: {
             textStyle: {
               fontName: 'Times-Roman',
-              fontSize: 18,
+              fontSize: 10,
               bold: true,
               italic: true,
               // The color of the text.
               color: '#871b47'
               }
-            },
-            backgroundColor: "transparent"
+            }
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
@@ -128,16 +169,14 @@ angular.module('moscowMugs.controllers', [])
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['New ', 'Returning'],
+          ['New',     11],
+          ['Returning',      2]
         ]);
 
         var options = {
           pieHole: 0.4,
+          pieSliceBorderColor: 'none',
           backgroundColor: 'transparent'
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -163,6 +202,33 @@ angular.module('moscowMugs.controllers', [])
 // website info controller
 .controller('websiteInfoController', function($scope){
 
+
+//top website chart
+  google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          backgroundColor: 'transparent',
+          color: 'white',
+          textStyle:{color: 'white'},
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
 
 })
 

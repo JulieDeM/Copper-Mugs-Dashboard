@@ -140,7 +140,7 @@ input.textbox{
 .left{
   float: left;
   width: 15%;
-  height: 1100px;
+  height: 941px;
   /*background-color: #EDEFF0;*/
   /*background-color:  #68C8C4;*/
   background-color: #2F333D;
@@ -300,6 +300,8 @@ a#storelink{
   margin-top: -5%;
   margin-right: 2%;
   font-size: 10px;
+  color: white;
+  text-decoration: none;
 }
 #customreports{
   margin-left: 2%
@@ -322,12 +324,17 @@ a#storelink{
   background-color: #2F333D;
 }
 hr{
-  margin-right: 2%;
+  /*margin-right: 2%;
   margin-left: 2%;
   color: white;
   border-top: 1px solid white;
-  border: white solid 1px;
-  border: white 1px solid;
+  border: white 0.5px solid;*/
+
+  margin-top: 1rem;
+margin-bottom: 1rem;
+border: 0;
+border-top: 1px solid rgba(0,0,0,.1);
+border: white 0.5px solid;
 }
 footer{
   background-color: #5AA498;
