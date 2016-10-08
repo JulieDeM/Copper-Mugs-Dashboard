@@ -20,8 +20,9 @@ nav{
   width: 150px;
   margin-left: 20px;
   border-radius: 50%;
-  border: blue 2px solid;
-  background-color: #63C18C;
+  /*border: #90ABD7 2px solid;*/
+  /*background-color: #63C18C;*/
+  background-color: #2F343D;
 }
 .graphsfb{
   display: flex;
@@ -221,11 +222,22 @@ input.textbox{
   float: right;
   width:85%;
   background-color: #252830;
-
+}
+tr{
+  background-color: #787E89;
+}
+td{
+  background-color: #787E89;
+}
+#personicon{
+  margin-left: 30%;
+  margin-top: 30%;
 }
 .navleft{
   padding-right: 5%;
   margin-top: 40%;
+  font-size: 12px;
+  color: white;
 }
 .navfont{
   color: white;
@@ -304,7 +316,8 @@ a#storelink{
   text-decoration: none;
 }
 #customreports{
-  margin-left: 2%
+  margin-left: 2%;
+  color: white;
 }
 #customreportadd{
   border: none;
@@ -312,6 +325,7 @@ a#storelink{
   padding-left: 4%;
   padding-right: 4%;
   margin-left: 30%;
+  margin-bottom: 20%;
 }
 .audienceprofile{
   border: #E0E0E0 solid 1px;

@@ -1,3 +1,6 @@
 node_modules
 .env
 public/javascripts/app.js
+public/javascripts/services/services.js
+public/views/jsonga.js
+public/views/gaapi.html
