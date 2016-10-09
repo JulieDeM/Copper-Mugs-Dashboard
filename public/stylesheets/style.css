@@ -23,6 +23,10 @@ nav{
   /*border: #90ABD7 2px solid;*/
   /*background-color: #63C18C;*/
   background-color: #2F343D;
+  color: white;
+}
+.row{
+  background-color: #2F343D;
 }
 .graphsfb{
   display: flex;
@@ -93,6 +97,7 @@ nav{
   color: white;
   font-size: 14px;
   margin-left: 3%;
+  margin-top: 4%;
 }
 .linkstomove{
   float:right;
@@ -141,9 +146,28 @@ input.textbox{
 .left{
   float: left;
   width: 15%;
-  height: 941px;
-  /*background-color: #EDEFF0;*/
-  /*background-color:  #68C8C4;*/
+  /*height:1640px;*/
+  padding-bottom: 100%;
+  overflow: hidden;
+  background-color: #2F333D;
+}
+.leftfb{
+  float: left;
+  width: 15%;
+  height:800px;
+  overflow: hidden;
+  background-color: #2F333D;
+}
+#reportopt{
+  margin-left: 20%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.leftweb{
+  float: left;
+  width: 15%;
+  height:800px;
+  overflow: hidden;
   background-color: #2F333D;
 }
 #admintitle{
@@ -215,7 +239,7 @@ input.textbox{
   background-color: #2F333D;
 }
 .card-img-top.img{
-  height: 50px;
+  height: 10%;
   width: 50px;
 }
 .right{
@@ -325,7 +349,15 @@ a#storelink{
   padding-left: 4%;
   padding-right: 4%;
   margin-left: 30%;
-  margin-bottom: 20%;
+  margin-bottom: 2%;
+}
+#addit{
+  border: none;
+  border-radius: 5px;
+  padding-left: 4%;
+  padding-right: 4%;
+  margin-left: 2%;
+  margin-bottom: 2%;
 }
 .audienceprofile{
   border: #E0E0E0 solid 1px;

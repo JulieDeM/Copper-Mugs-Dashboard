@@ -1,13 +1,11 @@
 angular.module('moscowMugs.controllers', [])
 
-
 .controller('facebookInfoController', function($scope, $http){
   $scope.list={};
   //make a fb call with your personal /about/me
   //then make a function that creates the
-  // settings
-
-  var fbdataagegender = null;
+  // settings in .env file goes here
+  // var fbdataagegender = null;
   $.ajax(settings).done(function (response) {if (response && !response.error) {
     var fbdataagegender = response.data[4].values[1].value;
     var fbfans = response.data[5].values[2].value;
@@ -102,7 +100,17 @@ angular.module('moscowMugs.controllers', [])
 // products controller
 .controller('adminController', function($scope){
   $scope.view = {};
+  $scope.productssold = 250;
+  $scope.username = "Torrey";
+  $scope.reports = ['Bounce Rate','Products Sold','Number of Facebook Fans', 'Advertising Spend'];
 
+  $scope.toogleme = function (moreReports){
+    moreReports.thishides = !moreReports.thishides
+  }
+
+  $scope.addrepo = function (addOne){
+    addOne.thishides = !addOne.thishides
+  }
   function datadonunt(){
     var donutOut = [];
     Object.keys(fbdataagegender).forEach(function fbgen (key) {
@@ -129,10 +137,11 @@ angular.module('moscowMugs.controllers', [])
   var options = {
     pieHole: 0.4,
     pieSliceBorderColor: 'none',
+    colors:['#8F9DFA','#7EBB8B'],
     backgroundColor: 'transparent',
     legend: 'none',
     alignment: 'center',
-    chartArea:{left:13,top:13,width:'60%',height:'60%'},
+    chartArea:{left:14,top:14,width:'60%',height:'60%'},
     titlePosition: 'in', axisTitlesPosition: 'in',
     hAxis: {showTextEvery: '1', textPosition: 'out'},
     vAxis: {textPosition: 'out'}
@@ -141,30 +150,41 @@ angular.module('moscowMugs.controllers', [])
   chart.draw(data, options);
   }
 
-
     //second graph, webviews
-    function drawChart2() {
-       var data = google.visualization.arrayToDataTable([
-         ['Date', 'Pageviews'],
-         ['1',  1],
-         ['2',  2],
-         ['3',  3],
-         ['4',  4]
-       ]);
-
-       var options = {
-        //  title: 'Pageviews',
-         curveType: 'function',
-         backgroundColor: 'transparent',
-         chartArea:{left:40,top:26,width:'50%',height: '45%'},
-        //  legend: { positxion: 'bottom' }
-        legend: 'none'
-       };
-
-       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-       chart.draw(data, options);
-     }
+  function drawChart2() {
+   var data = google.visualization.arrayToDataTable([
+     ['Date', 'Pageviews'],
+     ['1',  1],
+     ['2',  2],
+     ['3',  3],
+     ['4',  4],
+     ['5',  2],
+     ['6',  3],
+     ['7',  4]
+   ]);
+   var options = {
+     title: 'Pageviews',
+     colors:['#8F9DFA'],
+     curveType: 'function',
+     backgroundColor: 'transparent',
+     chartArea:{left:40,top:26,right:15,width:'100%',height: '60%'},
+    //  chartArea:{left:40,top:26,width:'50%',height: '45%'},
+    //  legend: { position: 'bottom' }
+    textStyle: {
+      fontName: 'Times-Roman',
+      fontSize: 18,
+      bold: true,
+      italic: true,
+      color: 'white',
+      auraColor: '#d799ae',
+      opacity: 0.8
+    },
+    legend: 'none'
+   };
+   var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+   chart.draw(data, options);
+ }
+ //third chart
 })
 
 // *******************
@@ -180,11 +200,9 @@ angular.module('moscowMugs.controllers', [])
 // website info controller
 .controller('websiteInfoController', function($scope){
 
-
 //top website chart
   google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart2);
-
 
       function drawChart2() {
         var data = google.visualization.arrayToDataTable([
@@ -196,16 +214,16 @@ angular.module('moscowMugs.controllers', [])
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title: 'Monthly Pageviews',
           backgroundColor: 'transparent',
           color: 'white',
           textStyle:{color: 'white'},
+          colors:['#7EBB8B','#8F9DFA'],
           curveType: 'function',
           legend: { position: 'bottom' }
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
         chart.draw(data, options);
       }
       //bounce rate week of
@@ -224,14 +242,40 @@ angular.module('moscowMugs.controllers', [])
       ]);
 
       var options = {
-        colorAxis: {colors: ['yellow', 'red']}
+        // colorAxis: {colors: ['yellow', 'red']}
+        colorAxis: {colors: ['#7EBB8B', '#8F9DFA']},
+        backgroundColor: 'transparent',
+        textStyle:{color: 'white'}
       };
-
       var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     }
 
-    //
+    //area chart -- represents sales versus ads spent
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart4);
+
+    function drawChart4() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Sales', 'Expenses'],
+        ['2013',  1000,      400],
+        ['2014',  1170,      460],
+        ['2015',  660,       1120],
+        ['2016',  1030,      540]
+      ]);
+
+      var options = {
+        title: 'Company Performance',
+        hAxis: {title: 'Year',  titleTextStyle: {color: 'white'}},
+        vAxis: {minValue: 0},
+        colors:['#7EBB8B','#8F9DFA'],
+        // colorAxis: {colors: ['','#7EBB8B', '#8F9DFA']},
+        backgroundColor: 'transparent'
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+      chart.draw(data, options);
+    }
 })
 
 // homePageController
