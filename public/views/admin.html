@@ -49,25 +49,56 @@
   <div class="audienceprofile">
     <div id="curve_chart"></div>
   </div>
+  <div class="cardcolumns" >
+  <div class="card" style="background-color:#2F333D; color: white; border: 1px solid white;">
+      <div id="chart_div2" style="width: 100%; height: 400px;"></div>
+    <div class="card-block">
+      <!-- <p class="card-title">Card title</p> -->
+    </div>
+  </div>
+
+  <div class="card" style="background-color:#2F333D; color: white; border: 1px solid white;">
+    <img class="card-img-top" src="images/logo.png" alt="Card image cap">
+    <div class="card-block">
+      <!-- <p class="card-title">Card title</p> -->
+    </div>
+  </div>
+</div>
   <div class="audienceprofile">
     <p>hey</p>
   </div>
   <div id="pannelmove" class="panel panel-default">
-    <div class="panel-heading" style="background-color:#2F333D; color: white;">Site Content - All Pages</div>
+    <div class="panel-heading" style="background-color:#2F333D; color: white; font-family: 'Oxygen', sans-serif;">Site Content - All Pages</div>
     <!-- Table -->
-    <table class="table">
+    <table class="tablepages">
       <tr class="row">
-
-      </tr>
-      <tr class="row">
-        hey
-      </tr>
-      <tr class="row">
-        hi
-      </tr>
-      <td>
-  hey
-      </td>
+    <th class="turnwhite">Page</th>
+    <th class="turnwhite">Pageviews</th>
+    <th class="turnwhite">Avg Time on Page</th>
+    <th class="turnwhite">Bounce Rate</th>
+    <th class="turnwhite">% Exit</th>
+  </tr>
+  <tr class="row">
+    <td>Totals</td>
+    <td>{{pageviewstotal}}</td>
+    <td>00:45</td>
+    <td>{{bounceratetotal}}</td>
+    <td>{{percentExit}}</td>
+  </tr>
+  <tr class="row">
+    <td> /app/</td>
+    <td>{{pageviewsapp}}</td>
+    <td>{{avgtimeonpageapp}}</td>
+    <td>{{bouncerateapp}}</td>
+    <td>{{percentExitapp}}</td>
+  </tr>
+  <tr class="row">
+    <td> /</td>
+    <td>{{pageviewsmain}}</td>
+    <td>{{avgtimeonpagemain}}</td>
+    <td>{{bounceratemain}}</td>
+    <td>{{percentExitmain}}</td>
+  </tr>
     </table>
   </div>
 
@@ -96,19 +127,6 @@
     </div>
   </div>
 
-  <div class="card" ng-hide="addrepo" style="background-color:#2F333D; color: white; border: 1px solid white;">
-    <img class="card-img-top" src="images/logo.png" alt="Card image cap">
-    <div class="card-block">
-      <p class="card-title">Card title</p>
-    </div>
-  </div>
-
-  <div class="card" ng-hide="addrepo" style="background-color:#2F333D; color: white; border: 1px solid white;">
-    <img class="card-img-top" src="images/logo.png" alt="Card image cap">
-    <div class="card-block">
-      <p class="card-title">Card title</p>
-    </div>
-  </div>
 </div>
 
 </aside>

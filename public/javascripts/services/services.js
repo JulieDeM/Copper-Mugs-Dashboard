@@ -1,9 +1,12 @@
 angular.module('moscowMugs.factory', [])
 
-.factory('mugsService', function($http) {
+.factory('queries_apicall', function($http) {
     return {
         all: function() {
             return $http.get('/api/mugs');
+        },
+        createUser: function(){
+          return $http.get('/api/mugs/create')
         }
     }
 })

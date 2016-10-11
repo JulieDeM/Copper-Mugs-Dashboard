@@ -1,5 +1,16 @@
 angular.module('moscowMugs.controllers', [])
 
+.controller('adminControllersignup', function($scope, queries_apicall){
+  $scope.list = {};
+
+  queries_apicall.all().then(function(info){
+    $scope.list.user1 = info.response.rows;
+  })
+  queries_apicall.createUser().then(function(newUser){
+    $scope.list.new = newUser.data.rows;
+  })
+})
+
 .controller('facebookInfoController', function($scope, $http, cyprusfbFactory){
   $scope.list={};
   var fbdataagegender = cyprusfbFactory.data[16].values[2].value;
@@ -82,6 +93,35 @@ angular.module('moscowMugs.controllers', [])
         chart.draw(data, options);
       }
       // $scope.$apply();
+      google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChartfinal);
+    function drawChartfinal() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Copper", 8.94, "#b87333"],
+        ["Silver", 10.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
 })
 
 // *******************
@@ -93,6 +133,28 @@ angular.module('moscowMugs.controllers', [])
   $scope.dollarspent = '$' + 50;
   $scope.username = "Torrey";
   $scope.reports = ['Bounce Rate','Products Sold','Number of Facebook Fans', 'Advertising Spend'];
+  //pageviews ga
+  $scope.pageviewstotal =  gaapiFactory.ga_results[0].totalsForAllResults.gapageviews;
+  $scope.pageviewsapp = 234;
+  $scope.pageviewsmain = 69;
+  //bounce rate ga
+  $scope.bounceratetotal =  (Number(gaapiFactory.ga_results[0].totalsForAllResults.gabounceRate/100) * 100).toFixed(2) + '%';
+  console.log(typeof $scope.bounceratetotal);
+  $scope.bouncerateapp = 0 +"%";
+  $scope.bounceratemain = 20 +"%";
+  //avg time on page ga
+  $scope.avgtimeonpage = gaapiFactory.ga_results[0].totalsForAllResults.gaavgTimeOnPage;
+  $scope.avgtimeonpageapp = 00 + ":"+49;
+  $scope.avgtimeonpagemain = 00+":"+30;
+
+  //% exit rate ga
+  $scope.percentExit = (Number(gaapiFactory.ga_results[0].totalsForAllResults.gaexitRate/100)*100).toFixed(2) + '%';
+  console.log(typeof $scope.bounceratetotal);
+
+  console.log("percent exit");
+  console.log($scope.percentExit);
+  $scope.percentExitapp = 1.71 + "%";
+  $scope.percentExitmain = 7.25 + "%";
 
   $scope.toogleme = function (moreReports){
     moreReports.thishides = !moreReports.thishides
@@ -177,7 +239,7 @@ angular.module('moscowMugs.controllers', [])
      ['31',  4]
    ]);
    var options = {
-     title: 'Pageviews',
+     title: 'Pageviews for September 2016',
      colors:['#8F9DFA'],
      curveType: 'function',
      backgroundColor: 'transparent',
@@ -204,23 +266,51 @@ angular.module('moscowMugs.controllers', [])
    chart.draw(data, options);
  }
  //third chart
+ //area chart -- represents sales versus ads spent
+ google.charts.load('current', {'packages':['corechart']});
+ google.charts.setOnLoadCallback(drawChart4);
+
+ function drawChart4() {
+   var data = google.visualization.arrayToDataTable([
+     ['Month', 'Expense', 'Sales'],
+     ['June',  20,      16],
+     ['July',  30,      2],
+     ['August',  10,       5],
+     ['September',  50,      10]
+   ]);
+
+   var options = {
+     title: 'Ad Performance to Sales of Mugs',
+     hAxis: {title: 'Year',  titleTextStyle: {color: 'white'}},
+     vAxis: {minValue: 0},
+     colors:['#7EBB8B','#8F9DFA'],
+     backgroundColor: 'transparent',
+     vAxis: {
+       textStyle: {color: 'white'}
+     },
+     hAxis: {
+       textStyle: {color: 'white'}
+     },
+     titleTextStyle: {color: 'white'},
+     textStyle: {
+       color: 'white'
+     },
+     legend: { position: 'bottom', textStyle: {color: 'white'} }
+   };
+
+   var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+   chart.draw(data, options);
+   }
+
 })
 
-// *******************
-// *******************
-// products controller
-.controller('adminControllersignup', function($scope){
-
-
-})
 
 // *******************
 // *******************
 // website info controller
 .controller('websiteInfoController', function($scope, gaapiFactory){
 
-  $scope.bouncerate = gaapiFactory.ga_results[0].totalsForAllResults.gabounceRate;
-  // $scope.bouncerate = (bouncerateb.Number).toFixed(2) + '%';
+  $scope.bouncerate = (Number(gaapiFactory.ga_results[0].totalsForAllResults.gabounceRate/100)*100).toFixed(2) + '%';
   $scope.totalwebviews = gaapiFactory.ga_results[0].totalsForAllResults.gapageviews;
   $scope.averagetimeonsite = gaapiFactory.ga_results[0].totalsForAllResults.gaavgTimeOnPage;
   $scope.adsenseAdsViewed = gaapiFactory.ga_results[0].totalsForAllResults.gaadsenseAdsViewed;
