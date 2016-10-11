@@ -1,6 +1,6 @@
 angular.module('moscowMugs.controllers', [])
 
-.controller('adminControllersignup', function($scope, queries_apicall){
+.controller('adminControllersignup', function($scope, queries_apicall, $state){
   $scope.list = {};
 
   queries_apicall.all().then(function(info){
@@ -9,7 +9,11 @@ angular.module('moscowMugs.controllers', [])
   queries_apicall.createUser().then(function(newUser){
     $scope.list.new = newUser.data.rows;
   })
+  $scope.signin = function(){
+    $state.go('admin')
+  }
 })
+
 
 .controller('facebookInfoController', function($scope, $http, cyprusfbFactory){
   $scope.list={};
@@ -353,6 +357,7 @@ google.charts.load("current", {packages:['corechart']});
       var options = {
         title: "Avg Likes to Type of Facebook Post",
         titleTextStyle: {color: 'white'},
+        textStyle: {color: 'white'},
         bar: {groupWidth: "95%"},
         backgroundColor: 'transparent',
         legend: { position: "none" },
