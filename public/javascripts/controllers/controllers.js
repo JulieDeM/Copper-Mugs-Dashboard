@@ -1,40 +1,30 @@
 angular.module('moscowMugs.controllers', [])
 
-.controller('facebookInfoController', function($scope, $http){
+.controller('facebookInfoController', function($scope, $http, cyprusfbFactory){
   $scope.list={};
-  //make a fb call with your personal /about/me
-  //then make a function that creates the
-  // settings in .env file goes here
-  // var fbdataagegender = null;
-  $.ajax(settings).done(function (response) {if (response && !response.error) {
-    var fbdataagegender = response.data[4].values[1].value;
-    var fbfans = response.data[5].values[2].value;
-    for (var key in fbdataagegender) {
-      if (fbdataagegender.hasOwnProperty(key)) {
-        console.log(key + " -> " + fbdataagegender[key]);
-      }
-    }
-    var fbfangeo=[];
-  }
-  console.log(fbdataagegender);
-  var fbdataagegender = response.data[4].values[1].value;
+  var fbdataagegender = cyprusfbFactory.data[16].values[2].value;
+  // console.log(fbdataagegender);
+  $scope.fbfans = cyprusfbFactory.data[17].values[2].value;
+  $scope.postimpressions = cyprusfbFactory.data[11].values[0].value;
+  $scope.pageviewstotal =  cyprusfbFactory.data[19].values[2].value;
   var bigAr = [];
   Object.keys(fbdataagegender).forEach(function fbgen (key) {
     var smallAr = [];
-    // console.log(key, obj[key]);
-    // console.log(key, fbdataagegender[key]);
     var key = key;
+    // key.splice(2)
+    console.log(key);
+    if(key == 'f'){
+      console.log(key[0]);
+    }
+    key.split(2)
     smallAr.push(key);
     smallAr.push(fbdataagegender[key]);
     bigAr.push(smallAr);
   });
-  console.log(bigAr);
   bigAr.sort();
+  bigAr.unshift(['Age Range', 'Males', 'Females'])
   console.log(bigAr);
-  console.log(bigAr[0]);
-  console.log(bigAr[0][0]);
-  var fbdatafansgeo = response.data[3].values[2].value;
-
+  console.log(typeof bigAr);
     //google charts region map //STILL NEED TO CHANGE TO COUNTRY
     google.charts.load('upcoming', {'packages':['geochart']});
       google.charts.setOnLoadCallback(drawRegionsMap);
@@ -48,23 +38,22 @@ angular.module('moscowMugs.controllers', [])
           ['France', 600],
           ['RU', 700]
         ]);
-        var options = {backgroundColor: "transparent"};
+        var options = {backgroundColor: "transparent",
+        textStyle: { color: 'white'
+           }
+        };
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
         chart.draw(data, options);
       }
-  });
+  // });
   //gets the key and object pairs for fbdata and gender
-  // $scope.dataGrab = function dataGrab (){
-// }
-
   // $scope.fbfans = fbfans;
   $scope.fbage = "i will put a graph here";
-  $scope.$apply();
+  // $scope.$apply();
 //google chart for the fb users -- age and gender
  google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        // div ng-init="dataGrab()" //go at the tob of fb page
         var data = google.visualization.arrayToDataTable([
           ['Age Range', 'Males', 'Females'],
           ['18-24', 8, 10],
@@ -72,35 +61,36 @@ angular.module('moscowMugs.controllers', [])
           ['35-44', 37, 35],
           ['45-54', 2, 10],
           ['55-64', 1, 20]
-        //   // ['F.18-24', 1, 20]
-        //   // bigAr[0][0], bigAr[0][1], bigAr[5][0]
         ]);
+        // var data = google.visualization.arrayToDataTable(bigAr)
         var options = {
           backgroundColor: 'transparent',
           chart: {
-            title: 'Age of Facebook Fans'
+            title: 'Age of Facebook Fans',
           },
           annotations: {
             textStyle: {
-              fontName: 'Times-Roman',
+              fontName: 'Oxygen',
               fontSize: 10,
               bold: true,
               italic: true,
-              color: '#871b47'
+              color: 'white'
               }
             }
         };
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
         chart.draw(data, options);
       }
+      // $scope.$apply();
 })
 
 // *******************
 // *******************
 // products controller
-.controller('adminController', function($scope){
+.controller('adminController', function($scope, gaapiFactory, cyprusfbFactory){
   $scope.view = {};
   $scope.productssold = 250;
+  $scope.dollarspent = '$' + 50;
   $scope.username = "Torrey";
   $scope.reports = ['Bounce Rate','Products Sold','Number of Facebook Fans', 'Advertising Spend'];
 
@@ -143,8 +133,8 @@ angular.module('moscowMugs.controllers', [])
     alignment: 'center',
     chartArea:{left:14,top:14,width:'60%',height:'60%'},
     titlePosition: 'in', axisTitlesPosition: 'in',
-    hAxis: {showTextEvery: '1', textPosition: 'out'},
-    vAxis: {textPosition: 'out'}
+    hAxis: {showTextEvery: '1', textPosition: 'out',textStyle: {color: 'white'} },
+    vAxis: {textPosition: 'out', textStyle: {color: 'white'}}
   };
   var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
   chart.draw(data, options);
@@ -160,7 +150,31 @@ angular.module('moscowMugs.controllers', [])
      ['4',  4],
      ['5',  2],
      ['6',  3],
-     ['7',  4]
+     ['7',  4],
+     ['8',  3],
+     ['9',  4],
+     ['10',  2],
+     ['11',  3],
+     ['12',  4],
+     ['13',  4],
+     ['14',  3],
+     ['15',  4],
+     ['16',  2],
+     ['17',  3],
+     ['18',  4],
+     ['19',  4],
+     ['20',  4],
+     ['21',  3],
+     ['22',  4],
+     ['23',  2],
+     ['24',  3],
+     ['25',  4],
+     ['26',  4],
+     ['27',  3],
+     ['28',  4],
+     ['29',  2],
+     ['30',  3],
+     ['31',  4]
    ]);
    var options = {
      title: 'Pageviews',
@@ -168,17 +182,22 @@ angular.module('moscowMugs.controllers', [])
      curveType: 'function',
      backgroundColor: 'transparent',
      chartArea:{left:40,top:26,right:15,width:'100%',height: '60%'},
-    //  chartArea:{left:40,top:26,width:'50%',height: '45%'},
-    //  legend: { position: 'bottom' }
+     vAxis: {
+       textStyle: {color: 'white'}
+     },
+     hAxis: {
+       textStyle: {color: 'white'}
+     },
     textStyle: {
       fontName: 'Times-Roman',
       fontSize: 18,
-      bold: true,
+      bold: false,
       italic: true,
       color: 'white',
       auraColor: '#d799ae',
       opacity: 0.8
     },
+    titleTextStyle: {color: 'white'},
     legend: 'none'
    };
    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -198,29 +217,69 @@ angular.module('moscowMugs.controllers', [])
 // *******************
 // *******************
 // website info controller
-.controller('websiteInfoController', function($scope){
+.controller('websiteInfoController', function($scope, gaapiFactory){
 
+  $scope.bouncerate = gaapiFactory.ga_results[0].totalsForAllResults.gabounceRate;
+  // $scope.bouncerate = (bouncerateb.Number).toFixed(2) + '%';
+  $scope.totalwebviews = gaapiFactory.ga_results[0].totalsForAllResults.gapageviews;
+  $scope.averagetimeonsite = gaapiFactory.ga_results[0].totalsForAllResults.gaavgTimeOnPage;
+  $scope.adsenseAdsViewed = gaapiFactory.ga_results[0].totalsForAllResults.gaadsenseAdsViewed;
 //top website chart
   google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
+          ['Date', 'Pageviews'],
+          ['1',  1],
+          ['2',  2],
+          ['3',  3],
+          ['4',  4],
+          ['5',  2],
+          ['6',  3],
+          ['7',  4],
+          ['8',  3],
+          ['9',  4],
+          ['10',  2],
+          ['11',  3],
+          ['12',  4],
+          ['13',  4],
+          ['14',  3],
+          ['15',  4],
+          ['16',  2],
+          ['17',  3],
+          ['18',  4],
+          ['19',  4],
+          ['20',  4],
+          ['21',  3],
+          ['22',  4],
+          ['23',  2],
+          ['24',  3],
+          ['25',  4],
+          ['26',  4],
+          ['27',  3],
+          ['28',  4],
+          ['29',  2],
+          ['30',  3],
+          ['31',  4]
         ]);
 
         var options = {
-          title: 'Monthly Pageviews',
-          backgroundColor: 'transparent',
-          color: 'white',
           textStyle:{color: 'white'},
+          title:'Monthly Pageviews',
+          backgroundColor: 'transparent',
+          vAxis: {
+            textStyle: {color: 'white'}
+          },
+          hAxis: {
+            textStyle: {color: 'white'}
+          },
+          titleTextStyle: {color: 'white'},
+          // color: 'white',
           colors:['#7EBB8B','#8F9DFA'],
           curveType: 'function',
-          legend: { position: 'bottom' }
+          // legend: { position: 'bottom' }
+          legend: 'none'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -242,11 +301,23 @@ angular.module('moscowMugs.controllers', [])
       ]);
 
       var options = {
-        // colorAxis: {colors: ['yellow', 'red']}
         colorAxis: {colors: ['#7EBB8B', '#8F9DFA']},
         backgroundColor: 'transparent',
-        textStyle:{color: 'white'}
-      };
+        textStyle:{color: 'white'},
+        titleTextStyle: {color: 'white'},
+        vAxis: {
+          textStyle: {color: 'white'}
+        },
+        hAxis: {
+          textStyle: {color: 'white'}
+        },
+        legend: {
+         textStyle: {
+             color: 'white'
+         }
+       },
+       tooltip:{textStyle:{color:'"white'}},
+      }
       var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     }
@@ -257,25 +328,98 @@ angular.module('moscowMugs.controllers', [])
 
     function drawChart4() {
       var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2013',  1000,      400],
-        ['2014',  1170,      460],
-        ['2015',  660,       1120],
-        ['2016',  1030,      540]
+        ['Month', 'Expense', 'Sales'],
+        ['June',  20,      16],
+        ['July',  30,      2],
+        ['August',  10,       5],
+        ['September',  50,      10]
       ]);
 
       var options = {
-        title: 'Company Performance',
+        title: 'Ad Performance to Sales of Mugs',
         hAxis: {title: 'Year',  titleTextStyle: {color: 'white'}},
         vAxis: {minValue: 0},
         colors:['#7EBB8B','#8F9DFA'],
-        // colorAxis: {colors: ['','#7EBB8B', '#8F9DFA']},
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        vAxis: {
+          textStyle: {color: 'white'}
+        },
+        hAxis: {
+          textStyle: {color: 'white'}
+        },
+        titleTextStyle: {color: 'white'},
+        textStyle: {
+          color: 'white'
+        },
+        legend: { position: 'bottom', textStyle: {color: 'white'} }
       };
 
       var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
       chart.draw(data, options);
-    }
+      }
+
+    //second graph, webviews
+  function drawChart3() {
+   var data = google.visualization.arrayToDataTable([
+     ['Date', 'Pageviews'],
+     ['1',  1],
+     ['2',  2],
+     ['3',  3],
+     ['4',  4],
+     ['5',  2],
+     ['6',  3],
+     ['7',  4],
+     ['8',  3],
+     ['9',  4],
+     ['10',  2],
+     ['11',  3],
+     ['12',  4],
+     ['13',  4],
+     ['14',  3],
+     ['15',  4],
+     ['16',  2],
+     ['17',  3],
+     ['18',  4],
+     ['19',  4],
+     ['20',  4],
+     ['21',  3],
+     ['22',  4],
+     ['23',  2],
+     ['24',  3],
+     ['25',  4],
+     ['26',  4],
+     ['27',  3],
+     ['28',  4],
+     ['29',  2],
+     ['30',  3],
+     ['31',  4]
+   ]);
+   var options = {
+     title: 'Pageviews',
+     colors:['#8F9DFA'],
+     curveType: 'function',
+     backgroundColor: 'transparent',
+     chartArea:{left:40,top:26,right:15,width:'100%',height: '60%'},
+     vAxis: {
+       textStyle: {color: 'white'}
+     },
+     hAxis: {
+       textStyle: {color: 'white'}
+     },
+    textStyle: {
+      fontName: 'Times-Roman',
+      fontSize: 18,
+      bold: true,
+      italic: true,
+      color: 'white',
+      auraColor: '#d799ae',
+      opacity: 0.8
+    },
+    legend: 'none'
+   };
+   var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+   chart.draw(data, options);
+ }
 })
 
 // homePageController

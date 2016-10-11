@@ -1,5 +1,5 @@
 // var app = angular.module('moscowMugs', ["ui.router", 'moscowMugs.controllers', 'environment']);
-var app = angular.module('moscowMugs', ["ui.router", 'moscowMugs.controllers']);
+var app = angular.module('moscowMugs', ["ui.router", 'moscowMugs.controllers', 'moscowMugs.factory']);
 
 // app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'envServiceProvider', function($stateProvider, $urlRouterProvider, envServiceProvider, $locationProvider) {
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  function($stateProvider, $urlRouterProvider, $locationProvider) {

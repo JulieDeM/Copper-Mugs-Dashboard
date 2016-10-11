@@ -10,35 +10,36 @@
 
 <aside class="right">
     <h4 id="dashboardtext">Facebook Data</h4>
-    <p id="logoutlink">
-      logout
-    </p>
+    <a href="" id="logoutlink">logout </a>
     <!-- <br> -->
     <hr>
 
     <div class="graphsfb">
       <div id="graph1fb">
-        <p class="fbgraphtitle">POST REACH</p>
+        <p class="fbgraphtitle">POST IMPRESSIONS</p>
         <hr class="linewhitegraph">
-        <div >
-          <p>
-            FBPAGEBELOW {{fbpage}}
-          </p>
-          <p>
-            {{fbage}}
-          </p>
+        <div>
+          <div class="whitecirclefb">
+            <p id="fbfansbig3">
+              {{postimpressions}}
+            </p>
+          </div>
         </div>
       </div>
       <div id="graph2fb">
         <p class="fbgraphtitle">WEBSITE CLICKS</p>
         <hr class="linewhitegraph">
-        <p ng-repeat="(key,value) in fbdatatest">{{key}} : {{value}}</p>
+          <div class="whitecirclefb">
+        <p id="fbfansbig2">{{pageviewstotal}}</p>
+          </div>
+        <!-- <p ng-repeat="(key,value) in fbdatatest">{{key}} : {{value}}</p> -->
       </div>
       <div id="graph3fb">
         <p class="fbgraphtitle">TOTAL FACEBOOK FANS</p>
         <hr class="linewhitegraph">
         <div class="whitecirclefb">
           <p id="fbfansbig"> {{fbfans}} </p>
+
         </div>
       </div>
     </div>
@@ -55,7 +56,7 @@
      <!-- <div id="chart_div" style="width: 100%; height: 500px;"></div> -->
      <!-- <div id="columnchart_values" style="width: 90%; height: 400px; margin-left: -10px;"></div> -->
      <!-- <div id="dual_y_div" style="width: 90%; height: 400px;"></div> -->
-     <div id="columnchart_material" style="width: 100%; height: 300px; backgroundColor: transparent"></div>
+     <div id="columnchart_material" style="width: 100%; height: 300px;"></div>
 
     </div>
     <br>

@@ -1,4 +1,6 @@
-app.factory('mugsService', function($http) {
+angular.module('moscowMugs.factory', [])
+
+.factory('mugsService', function($http) {
     return {
         all: function() {
             return $http.get('/api/mugs');
@@ -6,546 +8,831 @@ app.factory('mugsService', function($http) {
     }
 })
 
-app.factory('gaapiFactory', function() {
+.factory('gaapiFactory', function() {
 
     return {
         apiResults: [],
-        getTotal: function() {
-            var cart = teaFactory.currentItems;
-            var sum = 0;
-            var qty = 0;
-            for (var i = 0; i < cart.length; i++) {
-                sum += (cart[i].price);
-                qty += cart[i].qty
-            }
-            var total = (sum * qty)
-            console.log(total);
-            return total
-            $scope.totalCost = total;
-            $scope.totalCost = ($scope.totalCost / 100);
-        },
-        cartShopping: function() {
-            return this.currentItems
-        },
-        ga_results: [{
-                "_id": "55c8ee82152165d244b98300",
-                "name": "Bayard stew",
-                "ingredients": "concentrated gluten, jewelry, dill, beetle nut, toast",
-                "caffeineScale": 244,
-                "price": 1540,
-                "inStock": true,
-                "rating": 1,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32664_d?$cimg$",
-                "__v": 0,
-                "categories": ["dark", "cold"]
+        ga_results: [
+          {
+            kind: "analytics#gaData",
+            id: "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:122459357&metrics=ga:users,ga:newUsers,ga:percentNewSessions,ga:bounceRate,ga:entranceRate,ga:pageviews,ga:uniquePageviews,ga:avgTimeOnPage,ga:exitRate,ga:adsenseAdsViewed&start-date=30daysAgo&end-date=yesterday",
+            query: {
+            startdate: "30daysAgo",
+            enddate: "yesterday",
+            ids: "ga:122459357",
+            metrics: [
+            "ga:users",
+            "ga:newUsers",
+            "ga:percentNewSessions",
+            "ga:bounceRate",
+            "ga:entranceRate",
+            "ga:pageviews",
+            "ga:uniquePageviews",
+            "ga:avgTimeOnPage",
+            "ga:exitRate",
+            "ga:adsenseAdsViewed"
+            ],
+            startindex: 1,
+            maxresults: 1000
             },
-
+            itemsPerPage: 1000,
+            totalResults: 1,
+            selfLink: "https://www.googleapis.com/analytics/v3/data/ga?ids=ga:122459357&metrics=ga:users,ga:newUsers,ga:percentNewSessions,ga:bounceRate,ga:entranceRate,ga:pageviews,ga:uniquePageviews,ga:avgTimeOnPage,ga:exitRate,ga:adsenseAdsViewed&start-date=30daysAgo&end-date=yesterday",
+            profileInfo: {
+            profileId: "122459357",
+            accountId: "78137905",
+            webPropertyId: "UA-78137905-1",
+            internalWebPropertyId: "117094232",
+            profileName: "All Web Site Data",
+            tableId: "ga:122459357"
+            },
+            containsSampledData: false,
+            columnHeaders: [
             {
-                "_id": "55c8ee82152165d244b98301",
-                "name": "Incompactness syrup",
-                "ingredients": "fennel, nutmeg leaves, parsley, cream of 'cream of cream', blarney",
-                "caffeineScale": 49,
-                "price": 7348,
-                "inStock": true,
-                "rating": 2,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32303_d?$cimg$",
-                "__v": 0,
-                "categories": ["awesome"]
-            }, {
-                "_id": "55c8ee82152165d244b98302",
-                "name": "Flexner white tea",
-                "ingredients": "hot sauce, iron, beetle nut, fresco, blarney, raw mashed potato",
-                "caffeineScale": 38,
-                "price": 4991,
-                "inStock": true,
-                "rating": 4,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/31358_d?$cimg$",
-                "__v": 0,
-                "categories": ["cold"]
-            }, {
-                "_id": "55c8ee82152165d244b98303",
-                "name": "Pressor leaf",
-                "ingredients": "purina chow, flavorings, pepper, acorns, quality tallow, old sock, bay leaf",
-                "caffeineScale": 153,
-                "price": 5496,
-                "inStock": true,
-                "rating": 1,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/31358_d?$cimg$",
-                "__v": 0,
-                "categories": ["dry", "hot", "awesome"]
-            }, {
-                "_id": "55c8ee82152165d244b98304",
-                "name": "Flexner veggie tea",
-                "ingredients": "cream of tartar, eggplant, cake, deer antler",
-                "caffeineScale": 181,
-                "price": 2445,
-                "inStock": true,
-                "rating": 1,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32621_d?$cimg$",
-                "__v": 0,
-                "categories": ["summer"]
-            }, {
-                "_id": "55c8ee82152165d244b98305",
-                "name": "Topflighter malt",
-                "ingredients": "botox, toast, cream of 'cream of 'cream of cream'', kitchen scraps, beef, aligator tongue, lawn clippings",
-                "caffeineScale": 241,
-                "price": 4486,
-                "inStock": true,
-                "rating": 3,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/31359_d?$cimg$",
-                "__v": 0,
-                "categories": ["dry", "lucid", "warm"]
-            }, {
-                "_id": "55c8ee82152165d244b98306",
-                "name": "Cooking mix",
-                "ingredients": "flavorings, roasted mushrooms, toast, tumeric",
-                "caffeineScale": 230,
-                "price": 6973,
-                "inStock": true,
-                "rating": 3,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32303_d?$cimg$",
-                "__v": 0,
-                "categories": ["summer"]
-            }, {
-                "_id": "55c8ee82152165d244b98307",
-                "name": "Cooking stew",
-                "ingredients": "eggplant",
-                "caffeineScale": 122,
-                "price": 6003,
-                "inStock": true,
-                "rating": 2,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/31358_d?$cimg$",
-                "__v": 0,
-                "categories": ["dry", "winter", "lucid"]
-            }, {
-                "_id": "55c8ee82152165d244b98308",
-                "name": "Prevenient herb tea",
-                "ingredients": "cream of tartar, cream of cream, kitchen scraps, flavorings",
-                "caffeineScale": 196,
-                "price": 1374,
-                "inStock": true,
-                "rating": 3,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32174_d?$cimg$",
-                "__v": 0,
-                "categories": ["lucid", "hot"]
-            }, {
-                "_id": "55c8ee82152165d244b98309",
-                "name": "Angular mix",
-                "ingredients": "hot sauce, lawn clippings, fennel, parsley, quinine",
-                "caffeineScale": 196,
-                "price": 4158,
-                "inStock": true,
-                "rating": 2,
-                "imageUrl": "http://s7d5.scene7.com/is/image/Teavana/32621_d?$cimg$",
-                "__v": 0,
-                "categories": ["spring", "warm", "winter"]
+            name: "ga:users",
+            columnType: "METRIC",
+            dataType: "INTEGER"
+            },
+            {
+            name: "ga:newUsers",
+            columnType: "METRIC",
+            dataType: "INTEGER"
+            },
+            {
+            name: "ga:percentNewSessions",
+            columnType: "METRIC",
+            dataType: "PERCENT"
+            },
+            {
+            name: "ga:bounceRate",
+            columnType: "METRIC",
+            dataType: "PERCENT"
+            },
+            {
+            name: "ga:entranceRate",
+            columnType: "METRIC",
+            dataType: "PERCENT"
+            },
+            {
+            name: "ga:pageviews",
+            columnType: "METRIC",
+            dataType: "INTEGER"
+            },
+            {
+            name: "ga:uniquePageviews",
+            columnType: "METRIC",
+            dataType: "INTEGER"
+            },
+            {
+            name: "ga:avgTimeOnPage",
+            columnType: "METRIC",
+            dataType: "TIME"
+            },
+            {
+            name: "ga:exitRate",
+            columnType: "METRIC",
+            dataType: "PERCENT"
+            },
+            {
+            name: "ga:adsenseAdsViewed",
+            columnType: "METRIC",
+            dataType: "INTEGER"
             }
+            ],
+            totalsForAllResults: {
+            gausers: "1",
+            ganewUsers: "1",
+            gapercentNewSessions: "11.11111111111111",
+            gabounceRate: "11.11111111111111",
+            gaentranceRate: "2.9702970297029703",
+            gapageviews: "303",
+            gauniquePageviews: "9",
+            gaavgTimeOnPage: "44.863945578231295",
+            gaexitRate: "2.9702970297029703",
+            gaadsenseAdsViewed: "0"
+            },
+            rows: [
+            [
+            "1",
+            "1",
+            "11.11111111111111",
+            "11.11111111111111",
+            "2.9702970297029703",
+            "303",
+            "9",
+            "44.863945578231295",
+            "2.9702970297029703",
+            "0"
+            ]
+          ]
+        }
+
+
         ]
     };
 })
 
-
-// app.factory('facebookService', function($q) {
-//     return {
-//         getMyLastName: function() {
-//             var deferred = $q.defer();
-//             FB.api('/me', {
-//                 fields: 'last_name'
-//             }, function(response) {
-//                 if (!response || response.error) {
-//                     deferred.reject('Error occured');
-//                 } else {
-//                     deferred.resolve(response);
-//                 }
-//             });
-//             return deferred.promise;
-//         }
-//     }
-// });
-
-
-
-app.factory('cyprusfbFactory', function() {
+.factory('cyprusfbFactory', function() {
 
   return {
-    fb_data: [{
-      name: "page_posts_impressions",
-      period: "day",
-      values: [{
-        value: 1,
-        end_time: "2016-09-29T07:00:00+0000"
-      }, {
-            value: 1,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 0,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Daily Total Impressions of your posts",
-        description: "Daily: The number of impressions that came from all of your posts. (Total Count)",
-        id: "886221544827048/insights/page_posts_impressions/day"
-    }, {
-        name: "page_posts_impressions",
-        period: "week",
-        values: [{
-            value: 59,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 15,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 7,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Weekly Total Impressions of your posts",
-        description: "Weekly: The number of impressions that came from all of your posts. (Total Count)",
-        id: "886221544827048/insights/page_posts_impressions/week"
-    }, {
-        name: "page_posts_impressions",
-        period: "days_28",
-        values: [{
-            value: 351,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 352,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 352,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "28 Days Total Impressions of your posts",
-        description: "28 Days: The number of impressions that came from all of your posts. (Total Count)",
-        id: "886221544827048/insights/page_posts_impressions/days_28"
-    }, {
-        name: "page_fans_city",
-        period: "lifetime",
-        values: [{
-            value: {
-                Philadelphia,
-                PA: 1,
-                Greenville,
-                PA: 1,
-                New Orleans,
-                LA: 1,
-                Kansas City,
-                MO: 1,
-                North East,
-                PA: 1,
-                Westminster,
-                CO: 2,
-                Sumter,
-                SC: 1,
-                Kenmore,
-                WA: 1,
-                Clovis,
-                NM: 1,
-                Reynosa,
-                Tamaulipas,
-                Mexico: 2,
-                Gunnison,
-                CO: 2,
-                Lakewood,
-                CO: 3,
-                Centennial,
-                CO: 4,
-                Los Angeles,
-                CA: 2,
-                Las Vegas,
-                NV: 1,
-                Eugene,
-                OR: 2,
-                Broomfield,
-                CO: 1,
-                Englewood,
-                CO: 6,
-                Chalco,
-                NE: 1,
-                Colorado Springs,
-                CO: 3,
-                Oklahoma City,
-                OK: 1,
-                Boulder,
-                CO: 1,
-                Dallas,
-                TX: 2,
-                Aurora,
-                CO: 5,
-                Denver,
-                CO: 18,
-                Rayne,
-                LA: 1,
-                Vancouver,
-                BC,
-                Canada: 2,
-                Byron,
-                MN: 1,
-                Naranja,
-                FL: 1,
-                Laredo,
-                TX: 1,
-                Hearne,
-                TX: 1,
-                Midlothian,
-                IL: 1,
-                Lebanon,
-                OH: 1,
-                White Sulphur Springs,
-                WV: 1,
-                Waukegan,
-                IL: 1,
-                Wooster,
-                OH: 1,
-                Avondale,
-                AZ: 1,
-                New York,
-                NY: 2,
-                Middleton,
-                ID: 1,
-                Barstow,
-                CA: 1,
-                Watauga,
-                TX: 1,
-                Akron,
-                OH: 2,
-                Overland Park,
-                KS: 1,
-                Stilwell,
-                KS: 2,
-                Highlands Ranch,
-                CO: 2
-            },
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: {
-                Missoula,
-                MT: 1,
-                Espanola,
-                NM: 1,
-                Quesnel,
-                BC,
-                Canada: 1,
-                Milwaukee,
-                WI: 1,
-                North East,
-                PA: 1,
-                Zion,
-                IL: 1,
-                Montesilvano,
-                Abruzzo,
-                Italy: 1,
-                Duncan,
-                BC,
-                Canada: 1,
-                Hendricks,
-                IN: 1,
-                Littleton,
-                CO: 1,
-                Reynosa,
-                Tamaulipas,
-                Mexico: 2,
-                Gunnison,
-                CO: 2,
-                Lakewood,
-                CO: 3,
-                West Orange,
-                TX: 1,
-                Centennial,
-                CO: 4,
-                Richmond,
-                VA: 1,
-                Grand Rapids,
-                MI: 1,
-                Jackson,
-                MS: 1,
-                Los Angeles,
-                CA: 2,
-                Eugene,
-                OR: 2,
-                Coquitlam,
-                BC,
-                Canada: 1,
-                Broomfield,
-                CO: 1,
-                Englewood,
-                CO: 6,
-                Colorado Springs,
-                CO: 3,
-                Boulder,
-                CO: 1,
-                Dallas,
-                TX: 2,
-                Aurora,
-                CO: 5,
-                Denver,
-                CO: 20,
-                Mandan,
-                ND: 1,
-                Vancouver,
-                BC,
-                Canada: 2,
-                Hearne,
-                TX: 1,
-                Naranja,
-                FL: 1,
-                Laredo,
-                TX: 1,
-                Houston,
-                TX: 1,
-                Midland,
-                TX: 1,
-                Wooster,
-                OH: 1,
-                New York,
-                NY: 2,
-                Caimanera,
-                Cienfuegos Province,
-                Cuba: 1,
-                Lynchburg,
-                VA: 1,
-                Schuylkill Haven,
-                PA: 1,
-                Akron,
-                OH: 2,
-                Fayette,
-                WV: 1,
-                Speedway,
-                IN: 1,
-                Highlands Ranch,
-                CO: 2,
-                Stilwell,
-                KS: 2
-            },
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Lifetime Likes by City",
-        description: "Lifetime: Aggregated Facebook location data, sorted by city, about the people who like your Page. (Unique Users)",
-        id: "886221544827048/insights/page_fans_city/lifetime"
-    }, {
-        name: "page_fans_gender_age",
-        period: "lifetime",
-        values: [{
-            value: {
-                M .25 - 34: 44,
-                F .55 - 64: 5,
-                M .55 - 64: 3,
-                F .35 - 44: 35,
-                U .35 - 44: 1,
-                F .45 - 54: 10,
-                U .25 - 34: 3,
-                M .18 - 24: 8,
-                M .35 - 44: 37,
-                M .45 - 54: 2,
-                F .25 - 34: 58,
-                F .18 - 24: 11
-            },
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: {
-                M .25 - 34: 44,
-                F .55 - 64: 5,
-                M .55 - 64: 3,
-                F .35 - 44: 35,
-                U .35 - 44: 1,
-                F .45 - 54: 10,
-                U .25 - 34: 3,
-                M .18 - 24: 8,
-                M .35 - 44: 37,
-                M .45 - 54: 2,
-                F .25 - 34: 58,
-                F .18 - 24: 10
-            },
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Lifetime Likes by Gender and Age",
-        description: "Lifetime: Aggregated demographic data about the people who like your Page based on the age and gender information they provide in their user profiles. (Unique Users)",
-        id: "886221544827048/insights/page_fans_gender_age/lifetime"
-    }, {
-        name: "page_fans",
-        period: "lifetime",
-        values: [{
-            value: 217,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 217,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 216,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Lifetime Total Likes",
-        description: "Lifetime: The total number of people who have liked your Page. (Unique Users)",
-        id: "886221544827048/insights/page_fans/lifetime"
-    }, {
-        name: "page_views_total",
-        period: "day",
-        values: [{
-            value: 0,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 0,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 0,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Daily Total views count per Page",
-        description: "Daily: Total views count per Page",
-        id: "886221544827048/insights/page_views_total/day"
-    }, {
-        name: "page_views_total",
-        period: "week",
-        values: [{
-            value: 22,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 18,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 14,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Weekly Total views count per Page",
-        description: "Weekly: Total views count per Page",
-        id: "886221544827048/insights/page_views_total/week"
-    }, {
-        name: "page_views_total",
-        period: "days_28",
-        values: [{
-            value: 82,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 81,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 80,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "28 Days Total views count per Page",
-        description: "28 Days: Total views count per Page",
-        id: "886221544827048/insights/page_views_total/days_28"
-    }, {
-        name: "page_actions_post_reactions_like_total",
-        period: "day",
-        values: [{
-            value: 0,
-            end_time: "2016-09-29T07:00:00+0000"
-        }, {
-            value: 0,
-            end_time: "2016-09-30T07:00:00+0000"
-        }, {
-            value: 0,
-            end_time: "2016-10-01T07:00:00+0000"
-        }],
-        title: "Daily total post like reactions of a page.",
-        description: "Daily: total post like reactions of a page.",
-        id: "886221544827048/insights/page_actions_post_reactions_like_total/day"
-    }],
-    paging: {
-        previous: "https://graph.facebook.com/v2.7/886221544827048/insights?metric%5B0%5D=page_actions_post_reactions_like_total&metric%5B1%5D=page_fans&metric%5B2%5D=page_fans_city&metric%5B3%5D=page_fans_gender_age&metric%5B4%5D=page_views_total&metric%5B5%5D=page_posts_impressions&access_token=EAACEdEose0cBACDMKnZCZCY15eST0yYvtnSV2K3EtbmPOyfmrp66UynDNXF5b0tDy5d8AuZAZBQcjEE5y8ul18l576ZA2d5hza1VZClPQNILeEZCq0CWVzJdNYm5kusp17asw5dm9cVgq6gqLFfxt2STZBifVxhLLuVPQzDkMGgIcwZDZD&since=1474827602&until=1475086802",
-        next: "https://graph.facebook.com/v2.7/886221544827048/insights?metric%5B0%5D=page_actions_post_reactions_like_total&metric%5B1%5D=page_fans&metric%5B2%5D=page_fans_city&metric%5B3%5D=page_fans_gender_age&metric%5B4%5D=page_views_total&metric%5B5%5D=page_posts_impressions&access_token=EAACEdEose0cBACDMKnZCZCY15eST0yYvtnSV2K3EtbmPOyfmrp66UynDNXF5b0tDy5d8AuZAZBQcjEE5y8ul18l576ZA2d5hza1VZClPQNILeEZCq0CWVzJdNYm5kusp17asw5dm9cVgq6gqLFfxt2STZBifVxhLLuVPQzDkMGgIcwZDZD&since=1475346002&until=1475605202"
+  data: [
+    {
+      "name": "page_impressions",
+      "period": "day",
+      "values": [
+        {
+          "value": 1,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 2,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 3,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Total Impressions",
+      "description": "Daily: The number of impressions seen of any content associated with your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions/day"
+    },
+    {
+      "name": "page_impressions",
+      "period": "week",
+      "values": [
+        {
+          "value": 15,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 14,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 16,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Weekly Total Impressions",
+      "description": "Weekly: The number of impressions seen of any content associated with your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions/week"
+    },
+    {
+      "name": "page_impressions",
+      "period": "days_28",
+      "values": [
+        {
+          "value": 580,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 567,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 566,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "28 Days Total Impressions",
+      "description": "28 Days: The number of impressions seen of any content associated with your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions/days_28"
+    },
+    {
+      "name": "page_impressions_paid",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Paid Impressions",
+      "description": "Daily: The number of impressions of a Sponsored Story or Ad pointing to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions_paid/day"
+    },
+    {
+      "name": "page_impressions_paid",
+      "period": "week",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Weekly Paid Impressions",
+      "description": "Weekly: The number of impressions of a Sponsored Story or Ad pointing to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions_paid/week"
+    },
+    {
+      "name": "page_impressions_paid",
+      "period": "days_28",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "28 Days Paid Impressions",
+      "description": "28 Days: The number of impressions of a Sponsored Story or Ad pointing to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_impressions_paid/days_28"
+    },
+    {
+      "name": "page_negative_feedback",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Negative Feedback From Users",
+      "description": "Daily: The number of times people have given negative feedback to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_negative_feedback/day"
+    },
+    {
+      "name": "page_negative_feedback",
+      "period": "week",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Weekly Negative Feedback From Users",
+      "description": "Weekly: The number of times people have given negative feedback to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_negative_feedback/week"
+    },
+    {
+      "name": "page_negative_feedback",
+      "period": "days_28",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "28 Days Negative Feedback From Users",
+      "description": "28 Days: The number of times people have given negative feedback to your Page. (Total Count)",
+      "id": "886221544827048/insights/page_negative_feedback/days_28"
+    },
+    {
+      "name": "page_fan_removes",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Unlikes",
+      "description": "Daily: The number of Unlikes of your Page (Total Count)",
+      "id": "886221544827048/insights/page_fan_removes/day"
+    },
+    {
+      "name": "page_posts_impressions",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Total Impressions of your posts",
+      "description": "Daily: The number of impressions that came from all of your posts. (Total Count)",
+      "id": "886221544827048/insights/page_posts_impressions/day"
+    },
+    {
+      "name": "page_posts_impressions",
+      "period": "week",
+      "values": [
+        {
+          "value": 3,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 2,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 2,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Weekly Total Impressions of your posts",
+      "description": "Weekly: The number of impressions that came from all of your posts. (Total Count)",
+      "id": "886221544827048/insights/page_posts_impressions/week"
+    },
+    {
+      "name": "page_posts_impressions",
+      "period": "days_28",
+      "values": [
+        {
+          "value": 329,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 329,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 329,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "28 Days Total Impressions of your posts",
+      "description": "28 Days: The number of impressions that came from all of your posts. (Total Count)",
+      "id": "886221544827048/insights/page_posts_impressions/days_28"
+    },
+    {
+      "name": "page_fan_adds_by_paid_non_paid_unique",
+      "period": "day",
+      "values": [
+        {
+          "value": {
+            "total": 0,
+            "unpaid": 0,
+            "paid": 0
+          },
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": {
+            "total": 0,
+            "unpaid": 0,
+            "paid": 0
+          },
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": {
+            "total": 0,
+            "unpaid": 0,
+            "paid": 0
+          },
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily New likes by paid and non-paid",
+      "description": "Daily: The number of new people who have liked your page broken down by paid and non-paid. (Unique Users)",
+      "id": "886221544827048/insights/page_fan_adds_by_paid_non_paid_unique/day"
+    },
+    {
+      "name": "page_fans_city",
+      "period": "lifetime",
+      "values": [
+        {
+          "value": {
+            "Philadelphia, PA": 1,
+            "Nashwauk, MN": 1,
+            "Denham Springs, LA": 1,
+            "Tilden, NE": 1,
+            "El Segundo, CA": 1,
+            "Seattle, WA": 1,
+            "Santa Clara, Villa Clara Province, Cuba": 1,
+            "Quesnel, BC, Canada": 1,
+            "Westminster, CO": 2,
+            "Sumter, SC": 1,
+            "Duncan, BC, Canada": 1,
+            "Shallowater, TX": 1,
+            "Homer, AK": 1,
+            "Schertz, TX": 1,
+            "Jasper, TN": 1,
+            "Littleton, CO": 2,
+            "Kellogg, ID": 1,
+            "Fairbanks, AK": 1,
+            "Gunnison, CO": 2,
+            "Lakewood, CO": 3,
+            "Centennial, CO": 4,
+            "Melbourne, VIC, Australia": 1,
+            "Los Angeles, CA": 2,
+            "Eugene, OR": 2,
+            "Chesapeake, VA": 2,
+            "Englewood, CO": 6,
+            "Colorado Springs, CO": 3,
+            "Oklahoma City, OK": 1,
+            "Dallas, TX": 2,
+            "Aurora, CO": 5,
+            "Denver, CO": 19,
+            "Sherman Oaks, CA": 1,
+            "Geigertown, PA": 1,
+            "Vancouver, BC, Canada": 2,
+            "Hearne, TX": 1,
+            "Estero, FL": 1,
+            "Mexico City, Distrito Federal, Mexico": 2,
+            "Auckland, Auckland Region, New Zealand": 1,
+            "Avondale, AZ": 1,
+            "New York, NY": 2,
+            "Ouachita, AR": 1,
+            "Akron, OH": 2,
+            "Overland Park, KS": 1,
+            "Stilwell, KS": 2,
+            "Highlands Ranch, CO": 2
+          },
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": {
+            "Tilden, NE": 1,
+            "Calgary, AB, Canada": 1,
+            "Lexington, SC": 1,
+            "Westminster, CO": 2,
+            "Omaha, NE": 1,
+            "Duncan, BC, Canada": 1,
+            "Littleton, CO": 2,
+            "Rockford, MI": 1,
+            "North Highlands, CA": 1,
+            "Gunnison, CO": 2,
+            "Lakewood, CO": 3,
+            "Moradabad, Uttar Pradesh, India": 1,
+            "Montoursville, PA": 1,
+            "Centennial, CO": 4,
+            "Los Angeles, CA": 2,
+            "Eugene, OR": 2,
+            "Chesapeake, VA": 2,
+            "Englewood, CO": 6,
+            "Colorado Springs, CO": 3,
+            "Oklahoma City, OK": 1,
+            "Boulder, CO": 1,
+            "Dallas, TX": 2,
+            "Aurora, CO": 5,
+            "Denver, CO": 19,
+            "Geigertown, PA": 1,
+            "Big River, CA": 1,
+            "Vancouver, BC, Canada": 2,
+            "Springfield, MI": 1,
+            "Jackson Center, PA": 1,
+            "Houston, TX": 1,
+            "Mexico City, Distrito Federal, Mexico": 2,
+            "Bastrop, LA": 1,
+            "White Sulphur Springs, WV": 1,
+            "Palmer, AK": 1,
+            "Laconia, NH": 1,
+            "West Milford, NJ": 1,
+            "New York, NY": 2,
+            "Ouachita, AR": 1,
+            "Watauga, TX": 1,
+            "Akron, OH": 2,
+            "Overland Park, KS": 1,
+            "Grand Junction, CO": 1,
+            "Stilwell, KS": 2,
+            "Highlands Ranch, CO": 2,
+            "Sangamon, IL": 1
+          },
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": {
+            "Mount Pleasant, MI": 1,
+            "Sumter, SC": 1,
+            "Perryopolis, PA": 1,
+            "Surprise, AZ": 1,
+            "Homer, AK": 1,
+            "Schertz, TX": 1,
+            "Clovis, NM": 1,
+            "Reynosa, Tamaulipas, Mexico": 2,
+            "Rockford, MI": 1,
+            "Woodbine, KY": 1,
+            "Gunnison, CO": 2,
+            "Lakewood, CO": 3,
+            "Knoxville, TN": 1,
+            "Birmingham, AL": 1,
+            "Centennial, CO": 4,
+            "Los Angeles, CA": 2,
+            "Eugene, OR": 2,
+            "Chesapeake, VA": 2,
+            "Englewood, CO": 6,
+            "Colorado Springs, CO": 3,
+            "Dallas, TX": 2,
+            "Port Coquitlam, BC, Canada": 1,
+            "Aurora, CO": 5,
+            "Denver, CO": 20,
+            "Istanbul, Istanbul Province, Turkey": 1,
+            "Mandan, ND": 1,
+            "Cleveland, OH": 1,
+            "Big River, CA": 1,
+            "Vancouver, BC, Canada": 2,
+            "North Perry, OH": 1,
+            "Bartlett, IL": 1,
+            "Eger, Heves County, Hungary": 1,
+            "Dakar, Dakar Region, Senegal": 1,
+            "Lebanon, OH": 1,
+            "Midland, TX": 1,
+            "Neshoba, MS": 1,
+            "Kingsport, TN": 1,
+            "New York, NY": 2,
+            "Middleton, ID": 1,
+            "Lynchburg, VA": 1,
+            "Akron, OH": 2,
+            "Hotchkiss, CO": 1,
+            "Stilwell, KS": 2,
+            "Highlands Ranch, CO": 2,
+            "Sangamon, IL": 1
+          },
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Lifetime Likes by City",
+      "description": "Lifetime: Aggregated Facebook location data, sorted by city, about the people who like your Page. (Unique Users)",
+      "id": "886221544827048/insights/page_fans_city/lifetime"
+    },
+    {
+      "name": "page_fans_country",
+      "period": "lifetime",
+      "values": [
+        {
+          "value": {
+            "IN": 1,
+            "CH": 1,
+            "MX": 3,
+            "IT": 5,
+            "NZ": 1,
+            "HU": 1,
+            "CU": 2,
+            "SG": 1,
+            "AU": 2,
+            "SN": 1,
+            "CA": 8,
+            "US": 189,
+            "TR": 1
+          },
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": {
+            "IN": 1,
+            "CH": 1,
+            "MX": 3,
+            "IT": 5,
+            "NZ": 1,
+            "HU": 1,
+            "CU": 2,
+            "SG": 1,
+            "AU": 2,
+            "SN": 1,
+            "CA": 8,
+            "US": 189,
+            "TR": 1
+          },
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": {
+            "IN": 1,
+            "CH": 1,
+            "MX": 3,
+            "IT": 5,
+            "NZ": 1,
+            "HU": 1,
+            "CU": 2,
+            "SG": 1,
+            "AU": 2,
+            "SN": 1,
+            "CA": 8,
+            "US": 189,
+            "TR": 1
+          },
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Lifetime Likes by Country",
+      "description": "Lifetime: Aggregated Facebook location data, sorted by country, about the people who like your Page. (Unique Users)",
+      "id": "886221544827048/insights/page_fans_country/lifetime"
+    },
+    {
+      "name": "page_fans_gender_age",
+      "period": "lifetime",
+      "values": [
+        {
+          "value": {
+            "M.25-34": 44,
+            "F.55-64": 5,
+            "M.55-64": 3,
+            "F.35-44": 36,
+            "U.35-44": 1,
+            "F.45-54": 10,
+            "U.25-34": 3,
+            "M.18-24": 8,
+            "M.35-44": 37,
+            "M.45-54": 2,
+            "F.25-34": 57,
+            "F.18-24": 10
+          },
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": {
+            "M.25-34": 44,
+            "F.55-64": 5,
+            "M.55-64": 3,
+            "F.35-44": 36,
+            "U.35-44": 1,
+            "F.45-54": 10,
+            "U.25-34": 3,
+            "M.18-24": 8,
+            "M.35-44": 37,
+            "M.45-54": 2,
+            "F.25-34": 57,
+            "F.18-24": 10
+          },
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": {
+            "M.25-34": 44,
+            "F.55-64": 5,
+            "M.55-64": 3,
+            "F.35-44": 36,
+            "U.35-44": 1,
+            "F.45-54": 10,
+            "U.25-34": 3,
+            "M.18-24": 8,
+            "M.35-44": 37,
+            "M.45-54": 2,
+            "F.25-34": 57,
+            "F.18-24": 10
+          },
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Lifetime Likes by Gender and Age",
+      "description": "Lifetime: Aggregated demographic data about the people who like your Page based on the age and gender information they provide in their user profiles. (Unique Users)",
+      "id": "886221544827048/insights/page_fans_gender_age/lifetime"
+    },
+    {
+      "name": "page_fans",
+      "period": "lifetime",
+      "values": [
+        {
+          "value": 216,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 216,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 216,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Lifetime Total Likes",
+      "description": "Lifetime: The total number of people who have liked your Page. (Unique Users)",
+      "id": "886221544827048/insights/page_fans/lifetime"
+    },
+    {
+      "name": "page_views_total",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 1,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 1,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily Total views count per Page",
+      "description": "Daily: Total views count per Page",
+      "id": "886221544827048/insights/page_views_total/day"
+    },
+    {
+      "name": "page_views_total",
+      "period": "week",
+      "values": [
+        {
+          "value": 1,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 2,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 3,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Weekly Total views count per Page",
+      "description": "Weekly: Total views count per Page",
+      "id": "886221544827048/insights/page_views_total/week"
+    },
+    {
+      "name": "page_views_total",
+      "period": "days_28",
+      "values": [
+        {
+          "value": 71,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 70,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 69,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "28 Days Total views count per Page",
+      "description": "28 Days: Total views count per Page",
+      "id": "886221544827048/insights/page_views_total/days_28"
+    },
+    {
+      "name": "page_actions_post_reactions_like_total",
+      "period": "day",
+      "values": [
+        {
+          "value": 0,
+          "end_time": "2016-10-06T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-07T07:00:00+0000"
+        },
+        {
+          "value": 0,
+          "end_time": "2016-10-08T07:00:00+0000"
+        }
+      ],
+      "title": "Daily total post like reactions of a page.",
+      "description": "Daily: total post like reactions of a page.",
+      "id": "886221544827048/insights/page_actions_post_reactions_like_total/day"
+    }
+  ],
+  "paging": {
+    "previous": "https://graph.facebook.com/v2.8/886221544827048/insights?access_token=EAACEdEose0cBACAruaWNY8kZBd9G9UY6uKVim0jGDarJUJ1rTM7ptY105hWh1Blc1d1jdf8fc5QKjvYAgus39WVZAnkuo0qvHPew374XhwZB3qDBsTwSsjOSfxJsvBOVUQxYyEqdKBHRWtBWC9VH04cTsMCkbmZChZAIRtTQ8JAZDZD&debug=all&format=json&method=get&metric=%5B%22page_actions_post_reactions_like_total%22%2C%22page_impressions%22%2C%22page_impressions_paid%22%2C%22page_negative_feedback%22%2C%22page_fan_adds_by_paid_non_paid_unique%22%2C%22page_fans%22%2C%22page_fans_city%22%2C%22page_fans_country%22%2C%22page_fans_gender_age%22%2C%22page_fan_removes%22%2C%22page_views_total%22%2C%22page_posts_impressions%22%2C%22post_impressions_paid%22%2C%22post_video_avg_time_watched%22%2C%22domain_feed_clicks%22%5D&pretty=0&suppress_http_code=1&since=1475421760&until=1475680960",
+    "next": "https://graph.facebook.com/v2.8/886221544827048/insights?access_token=EAACEdEose0cBACAruaWNY8kZBd9G9UY6uKVim0jGDarJUJ1rTM7ptY105hWh1Blc1d1jdf8fc5QKjvYAgus39WVZAnkuo0qvHPew374XhwZB3qDBsTwSsjOSfxJsvBOVUQxYyEqdKBHRWtBWC9VH04cTsMCkbmZChZAIRtTQ8JAZDZD&debug=all&format=json&method=get&metric=%5B%22page_actions_post_reactions_like_total%22%2C%22page_impressions%22%2C%22page_impressions_paid%22%2C%22page_negative_feedback%22%2C%22page_fan_adds_by_paid_non_paid_unique%22%2C%22page_fans%22%2C%22page_fans_city%22%2C%22page_fans_country%22%2C%22page_fans_gender_age%22%2C%22page_fan_removes%22%2C%22page_views_total%22%2C%22page_posts_impressions%22%2C%22post_impressions_paid%22%2C%22post_video_avg_time_watched%22%2C%22domain_feed_clicks%22%5D&pretty=0&suppress_http_code=1&since=1475940160&until=1476199360"
     }
   }
+})

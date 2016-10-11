@@ -10,18 +10,39 @@
 
 <aside class="right">
   <h4 id="dashboardtext">Dashboard for {{username}}</h4>
-  <p id="logoutlink">logout</p>
+  <a href="" id="logoutlink">logout </a>
   <hr>
   <div class="circlegraphs">
     <div class="circl">
       <div id="donutchart" ></div>
     </div>
     <div class="circl">
-      <!-- <div id="curve_chart"></div> -->
+      <p id="wordcircle">{{dollarspent}} </p>
     </div>
-    <div class="circl">{{productssold}} Mugs Sold</div>
     <div class="circl">
-      <i id="personicon" class="fa fa-users fa-5x" aria-hidden="true"></i> % female vs male
+      <p id="wordcircle2">{{productssold}}</p></div>
+    <div class="circl">
+      <i id="gendericon" class="fa fa-venus-mars fa-5x" aria-hidden="true"></i>
+      <p id="men">92</p>
+      <p id="women">133</p>
+    </div>
+  </div>
+  <div class="graphtitlesmain">
+    <div>
+      <h4 class="graphtitles"><div id="newusers">
+        New Users
+      </div> vs <div id="returningusers">
+        Returning
+      </div></h4>
+    </div>
+    <div>
+      <h4 class="graphtitles">$ spent on Ads</h4>
+    </div>
+    <div>
+      <h4 class="graphtitles">Mugs Sold</h4>
+    </div>
+    <div>
+      <h4 class="graphtitles"> total <div id="male">male</div> vs <div id="female">female</div> customers</h4>
     </div>
   </div>
   <hr>
@@ -32,7 +53,7 @@
     <p>hey</p>
   </div>
   <div id="pannelmove" class="panel panel-default">
-    <div class="panel-heading" style="background-color:#2F333D; color: white;">Panel heading changeme</div>
+    <div class="panel-heading" style="background-color:#2F333D; color: white;">Site Content - All Pages</div>
     <!-- Table -->
     <table class="table">
       <tr class="row">
@@ -61,7 +82,7 @@
   </select>
 <button id="addit" type="button" ng-hide="toogleme" ng-click="edit($index, numbs)">Add Report</button>
 <div class="cardcolumns" >
-  <div class="card" ng-hide="addrepo;" value="Bounce Rate" style="background-color:#2F333D; color: white; border: 1px solid white;">
+  <div class="card" ng-if="numbs.value === 'CustomReport'" style="background-color:#2F333D; color: white; border: 1px solid white;">
     <img class="card-img-top" src="images/logo.png" alt="Card image cap">
     <div class="card-block">
       <p class="card-title">Card title</p>

@@ -1,6 +1,7 @@
 body{
   margin: 0;
   padding: 0;
+  font-family: 'Oxygen', sans-serif;
 }
 nav{
   background-color:#4472C4;
@@ -12,8 +13,73 @@ nav{
   height: 50px;
   width: 100%;
 }
+#logocyprus{
+  width:50px;
+  height: 50px;
+}
+.graphtitlesmain{
+  display: flex;
+  width: 100%;
+}
+.graphtitles{
+  color: white;
+  font-size: 10px;
+  margin-left: 60%;
+  font-family: 'Oxygen', sans-serif;
+}
+.statscont{
+  width: 40%;
+  margin-left: 2%;
+  text-align: center;
+  margin-right: 5%;
+  border: 1px solid white;
+  display: horizontal;
+  color: white;
+  flex-direction: row;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.audienceprofile2{
+  display: flex;
+}
 .circlegraphs{
   display: flex;
+}
+#wordcircle{
+  margin-left: 24%;
+  margin-top: 30%;
+  font-size: 40px;
+}
+#wordcircle2{
+  margin-left: 26%;
+  margin-top: 30%;
+  font-size: 40px;
+}
+#newusers{
+  color: #8BA3F4;
+}
+#returningusers{
+  color: #8EB68B;
+}
+#female{
+  color: #8BA3F4;
+}
+#women{
+  color: #8BA3F4;
+  margin-top: 48%;
+  margin-left: 42%;
+}
+#male{
+  color: #8EB68B;
+}
+#men{
+  color: #8EB68B;
+  margin-top: -65%;
+  margin-left: 40%;
+}
+#gendericon{
+  margin-left: 19%;
+  margin-top: 25%;
 }
 .circl{
   height: 150px;
@@ -24,6 +90,7 @@ nav{
   /*background-color: #63C18C;*/
   background-color: #2F343D;
   color: white;
+  font-family: 'Oxygen', sans-serif;
 }
 .row{
   background-color: #2F343D;
@@ -56,6 +123,9 @@ nav{
   height: 90px;
   width: 90px;
   border-radius: 50%;
+  margin-left: 19%;
+  margin-bottom: 4%;
+  margin-top: -6%;
   border: 3px white solid;
 }
 #graph1fb{
@@ -92,12 +162,32 @@ nav{
   font-size: 40px;
   font-weight: bold;
   align-items: center;
+  margin-left: 6%;
+  margin-top: 6%;
+}
+#fbfansbig2{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  align-items: center;
+  margin-left: 33%;
+  margin-top: 8%;
+}
+#fbfansbig3{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  align-items: center;
+  margin-left: 33%;
+  margin-top: 8%;
 }
 .fbgraphtitle{
   color: white;
-  font-size: 14px;
-  margin-left: 3%;
-  margin-top: 4%;
+  font-size: 12px;
+  margin-left: 5%;
+  margin-top: 8%;
+  margin-bottom: 1%;
+  font-family: 'Oxygen', sans-serif;
 }
 .linkstomove{
   float:right;
@@ -119,12 +209,14 @@ input.textbox{
   border: none;
   margin-bottom: 4%;
   z-index: -7;
+  font-family: 'Oxygen', sans-serif;
 }
 .formsignin{
   margin-left: 32%;
   margin-top: -22%;
   position: absolute;
   z-index: 10 !important;
+  font-family: 'Oxygen', sans-serif;
 }
 .formbox{
   height: 300px;
@@ -136,12 +228,14 @@ input.textbox{
   margin-top: 3%;
   color: white;
   align-content: center;
+  font-family: 'Oxygen', sans-serif;
 }
 #signinbutton{
   border-radius: 5px;
   border: none;
   padding-left: 3%;
   padding-right: 3%;
+  font-family: 'Oxygen', sans-serif;
 }
 .left{
   float: left;
@@ -150,6 +244,9 @@ input.textbox{
   padding-bottom: 100%;
   overflow: hidden;
   background-color: #2F333D;
+}
+#quickwebstats{
+  color: white;
 }
 .leftfb{
   float: left;
@@ -175,7 +272,7 @@ input.textbox{
   font-size: 22px;
   margin-left: 30%;
   margin-top: 3%;
-
+font-family: 'Oxygen', sans-serif;
   position: absolute;
   z-index: 10;
 }
@@ -186,6 +283,7 @@ input.textbox{
   margin-top: 6%;
   position: absolute;
   z-index: 10;
+  font-family: 'Oxygen', sans-serif;
 }
 #alert1{
   margin-right: 30%;
@@ -228,6 +326,7 @@ input.textbox{
   margin-bottom: -4px;
   margin-left: 2%;
   color: white;
+  font-family: 'Oxygen', sans-serif;
 }
 .cardcolumns{
   columns: 2;
@@ -338,6 +437,7 @@ a#storelink{
   font-size: 10px;
   color: white;
   text-decoration: none;
+  font-family: 'Oxygen', sans-serif;
 }
 #customreports{
   margin-left: 2%;
@@ -350,6 +450,7 @@ a#storelink{
   padding-right: 4%;
   margin-left: 30%;
   margin-bottom: 2%;
+  font-family: 'Oxygen', sans-serif;
 }
 #addit{
   border: none;
@@ -358,6 +459,7 @@ a#storelink{
   padding-right: 4%;
   margin-left: 2%;
   margin-bottom: 2%;
+  font-family: 'Oxygen', sans-serif;
 }
 .audienceprofile{
   border: #E0E0E0 solid 1px;
@@ -370,17 +472,11 @@ a#storelink{
   background-color: #2F333D;
 }
 hr{
-  /*margin-right: 2%;
-  margin-left: 2%;
-  color: white;
-  border-top: 1px solid white;
-  border: white 0.5px solid;*/
-
   margin-top: 1rem;
-margin-bottom: 1rem;
-border: 0;
-border-top: 1px solid rgba(0,0,0,.1);
-border: white 0.5px solid;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+  border: white 0.5px solid;
 }
 footer{
   background-color: #5AA498;
