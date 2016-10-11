@@ -58,8 +58,6 @@ angular.module('moscowMugs.controllers', [])
       }
   // });
   //gets the key and object pairs for fbdata and gender
-  // $scope.fbfans = fbfans;
-  $scope.fbage = "i will put a graph here";
   // $scope.$apply();
 //google chart for the fb users -- age and gender
  google.charts.load('current', {'packages':['bar']});
@@ -113,7 +111,7 @@ angular.module('moscowMugs.controllers', [])
                        2]);
 
       var options = {
-        title: "Density of Precious Metals, in g/cm^3",
+        title: "",
         width: 600,
         height: 400,
         bar: {groupWidth: "95%"},
@@ -302,6 +300,72 @@ angular.module('moscowMugs.controllers', [])
    chart.draw(data, options);
    }
 
+   //map for google trends moscow mule mugs
+
+
+   google.charts.load('current', {'packages':['corechart']});
+ google.charts.setOnLoadCallback(drawCharttrends);
+ function drawCharttrends() {
+   var data = google.visualization.arrayToDataTable([
+     ['Date', 'Interest'],
+     [ '10/11/15',      12],
+     [ '10/18/15',      5.5],
+     [ '10/25/15',     14],
+     [ '11/1/15',      5],
+     [ '11/8/15',      3.5],
+     [ '11/15/15',    7]
+   ]);
+
+   var options = {
+     title: '12 Month Trend of Moscow Mule Mugs - Google Trends',
+     hAxis: {title: 'Date', minValue: 0, maxValue: 15, textStyle: {color: 'white'}, legendTextStyle: {color:'white'}},
+     vAxis: {title: 'Interest', minValue: 0, maxValue: 15, textStyle: {color: 'white'},legendTextStyle: {color:'white'}},
+     legend: 'none',
+     backgroundColor: 'transparent',
+     titleTextStyle: {color: 'white'},
+     legendTextStyle: {color:'white'}
+   };
+
+   var chart = new google.visualization.ScatterChart(document.getElementById('chart_divtrends'));
+
+   chart.draw(data, options);
+ }
+
+//chart
+google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChartposts);
+    function drawChartposts() {
+      var data = google.visualization.arrayToDataTable([
+        ["Type", "Avg Likes", { role: "style" } ],
+        ["Text Only", 8.94, "#8F9DFA"],
+        ["Picture", 10.49, "#7EBB8B"],
+        ["Video", 19.30, "#5A9EC8"],
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Avg Likes to Type of Facebook Post",
+        titleTextStyle: {color: 'white'},
+        bar: {groupWidth: "95%"},
+        backgroundColor: 'transparent',
+        legend: { position: "none" },
+        vAxis: {
+          textStyle: {color: 'white'}
+        },
+        hAxis: {
+          textStyle: {color: 'white'}
+        },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
+      chart.draw(view, options);
+  }
 })
 
 
