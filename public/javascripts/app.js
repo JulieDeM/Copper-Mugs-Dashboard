@@ -3,7 +3,7 @@ var app = angular.module('moscowMugs', ["ui.router", 'moscowMugs.controllers', '
 
 // app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'envServiceProvider', function($stateProvider, $urlRouterProvider, envServiceProvider, $locationProvider) {
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  function($stateProvider, $urlRouterProvider, $locationProvider) {
- $urlRouterProvider.otherwise('home')
+ $urlRouterProvider.otherwise('admin')
  $stateProvider
    .state('home', {
      url: '/',
@@ -49,5 +49,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
      url: '/to-do',
      templateUrl: '/views/todo.html',
      controller: 'todoController'
+   })
+   .state('createuser', {
+     url: '/create-user',
+     templateUrl: '/views/createuser.html',
+     controller: 'createuserController'
    })
 }])

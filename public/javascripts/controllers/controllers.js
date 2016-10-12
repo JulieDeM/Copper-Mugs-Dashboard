@@ -5,6 +5,7 @@ angular.module('moscowMugs.controllers', [])
 
   queries_apicall.all().then(function(info){
     $scope.list.user1 = info.response.rows;
+    console.log($scope.list.user1);
   })
   queries_apicall.createUser().then(function(newUser){
     $scope.list.new = newUser.data.rows;
@@ -13,6 +14,11 @@ angular.module('moscowMugs.controllers', [])
     $state.go('admin')
   }
 })
+
+.controller('createuserController', function($scope, $http, queries_apicall, $state){
+
+})
+
 
 
 .controller('facebookInfoController', function($scope, $http, cyprusfbFactory){
@@ -129,7 +135,7 @@ angular.module('moscowMugs.controllers', [])
 // *******************
 // *******************
 // products controller
-.controller('adminController', function($scope, gaapiFactory, cyprusfbFactory){
+.controller('adminController', function($scope, gaapiFactory, cyprusfbFactory, googletrends){
   $scope.view = {};
   $scope.productssold = 250;
   $scope.dollarspent = '$' + 50;
@@ -305,24 +311,30 @@ angular.module('moscowMugs.controllers', [])
    }
 
    //map for google trends moscow mule mugs
-
+   var trendsinfo = googletrends.trendsdata[0];
+   console.log(trendsinfo);
+   var googletrenddata = [];
+   Object.keys(trendsinfo).forEach(function fbgen (key2) {
+     var innergtd = [];
+     var key3 = key2;
+     console.log(key2);
+     key3.split(2)
+     innergtd.push(key3);
+     innergtd.push(trendsinfo[key3]);
+     googletrenddata.push(innergtd);
+   });
+   googletrenddata.sort();
+   googletrenddata.unshift(['Date', 'Interest'])
+   console.log(googletrenddata);
 
    google.charts.load('current', {'packages':['corechart']});
  google.charts.setOnLoadCallback(drawCharttrends);
  function drawCharttrends() {
-   var data = google.visualization.arrayToDataTable([
-     ['Date', 'Interest'],
-     [ '10/11/15',      12],
-     [ '10/18/15',      5.5],
-     [ '10/25/15',     14],
-     [ '11/1/15',      5],
-     [ '11/8/15',      3.5],
-     [ '11/15/15',    7]
-   ]);
+  var data = google.visualization.arrayToDataTable(googletrenddata);
 
    var options = {
      title: '12 Month Trend of Moscow Mule Mugs - Google Trends',
-     hAxis: {title: 'Date', minValue: 0, maxValue: 15, textStyle: {color: 'white'}, legendTextStyle: {color:'white'}},
+     hAxis: {title: 'Date', minValue: 0, maxValue: 15, height: 20, textStyle: {color: 'white'}, legendTextStyle: {color:'white'}},
      vAxis: {title: 'Interest', minValue: 0, maxValue: 15, textStyle: {color: 'white'},legendTextStyle: {color:'white'}},
      legend: 'none',
      backgroundColor: 'transparent',

@@ -3,14 +3,16 @@ var router = express.Router();
 var knex = require('../db/knex');
 var queries = require('../lib/queries');
 
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
 
-router.get('/api/mugs', function(req, res, next){
+router.get('/all', function(req, res, next){
   queries.all().then(function(muginfo){
     res.json(muginfo)
+  })
+})
+
+router.get('/create-new', function(req, res, next){
+  queries.createUser().then(function(userinfo){
+    res.json(userinfo)
   })
 })
 

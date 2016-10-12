@@ -13,6 +13,8 @@ angular.module('moscowMugs.factory', [])
 
 .factory('googletrends', function(){
   return {
+    trendsdata: [
+      {
     "10/11/15" :	18,
     "10/18/15" :	15,
     "10/25/15" :	16,
@@ -66,6 +68,8 @@ angular.module('moscowMugs.factory', [])
     '9/25/16'	: 14,
     '10/2/16'	: 14,
     '10/9/16'	: 20
+      }
+    ]
   }
 })
 

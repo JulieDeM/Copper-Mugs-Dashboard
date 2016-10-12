@@ -39,13 +39,46 @@ nav{
 }
 .graphtitlesmain{
   display: flex;
+  /*width: 100%;*/
+}
+.indivgraphtitles{
   width: 100%;
 }
 .graphtitles{
   color: white;
   font-size: 10px;
-  margin-left: 60%;
   font-family: 'Oxygen', sans-serif;
+}
+#graphtitles1{
+  color: white;
+  font-size: 10px;
+  font-family: 'Oxygen', sans-serif;
+  margin-left: 13%;
+  margin-top:2%;
+  text-align: center;
+}
+#graphtitles2{
+  color: white;
+  font-size: 10px;
+  font-family: 'Oxygen', sans-serif;
+  margin-left: -37em;
+  margin-top: 2em;
+}
+#graphtitles3{
+  color: white;
+  font-size: 10px;
+  font-family: 'Oxygen', sans-serif;
+  margin-left: -26em;
+  margin-right: 2%;
+  margin-top: 2em;
+}
+#graphtitles4{
+  color: white;
+  font-size: 10px;
+  font-family: 'Oxygen', sans-serif;
+  margin-right: 6em;
+  margin-top: 5%;
+  text-align: center;
 }
 .statscont{
   width: 40%;
@@ -81,6 +114,7 @@ nav{
 }
 #returningusers{
   color: #8EB68B;
+  width: 100%;
 }
 #female{
   color: #8BA3F4;
