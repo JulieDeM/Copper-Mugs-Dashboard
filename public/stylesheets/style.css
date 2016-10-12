@@ -23,6 +23,7 @@ nav{
   font-style: normal;
   font-family: 'Oxygen', sans-serif;
   font-size: 12px;
+  text-align: center;
 }
 #monthtitle{
   font-family: 'Oxygen', sans-serif;
@@ -53,7 +54,7 @@ nav{
   color: white;
   font-size: 10px;
   font-family: 'Oxygen', sans-serif;
-  margin-left: 13%;
+  margin-left: -68%;
   margin-top:2%;
   text-align: center;
 }
@@ -61,23 +62,23 @@ nav{
   color: white;
   font-size: 10px;
   font-family: 'Oxygen', sans-serif;
-  margin-left: -37em;
-  margin-top: 2em;
+  margin-left: -34em;
+  margin-top: 1.5em;
 }
 #graphtitles3{
   color: white;
   font-size: 10px;
   font-family: 'Oxygen', sans-serif;
-  margin-left: -26em;
+  margin-left: -16em;
   margin-right: 2%;
-  margin-top: 2em;
+  margin-top: 1.5em;
 }
 #graphtitles4{
   color: white;
   font-size: 10px;
   font-family: 'Oxygen', sans-serif;
   margin-right: 6em;
-  margin-top: 5%;
+  margin-top: 9%;
   text-align: center;
 }
 .statscont{
@@ -149,6 +150,7 @@ nav{
 }
 .row{
   background-color: #2F343D;
+  text-align: center;
 }
 .graphsfb{
   display: flex;
