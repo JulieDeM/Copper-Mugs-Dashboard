@@ -13,6 +13,9 @@ angular.module('moscowMugs.controllers', [])
   $scope.signin = function(){
     $state.go('admin')
   }
+  $scope.signout = function(){
+    $state.go('adminsignup')
+  }
 })
 
 .controller('createuserController', function($scope, $http, queries_apicall, $state){
@@ -69,8 +72,8 @@ angular.module('moscowMugs.controllers', [])
   // $scope.$apply();
 //google chart for the fb users -- age and gender
  google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+      google.charts.setOnLoadCallback(drawChartgen);
+      function drawChartgen() {
         var data = google.visualization.arrayToDataTable([
           ['Age Range', 'Males', 'Females'],
           ['18-24', 8, 10],
@@ -128,6 +131,42 @@ angular.module('moscowMugs.controllers', [])
       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
       chart.draw(view, options);
   }
+
+  google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChartposts);
+      function drawChartposts() {
+        var data = google.visualization.arrayToDataTable([
+          ["Type", "Avg Likes", { role: "style" } ],
+          ["Text Only", 8.94, "#8F9DFA"],
+          ["Picture", 10.49, "#7EBB8B"],
+          ["Video", 19.30, "#5A9EC8"],
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+
+        var options = {
+          title: "Avg Likes to Type of Facebook Post",
+          titleTextStyle: {color: 'white'},
+          textStyle: {color: 'white'},
+          bar: {groupWidth: "95%"},
+          backgroundColor: 'transparent',
+          legend: { position: "none" },
+          vAxis: {
+            textStyle: {color: 'white'}
+          },
+          hAxis: {
+            textStyle: {color: 'white'}
+          },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
+        chart.draw(view, options);
+    }
 })
 
 // *******************
@@ -345,7 +384,7 @@ angular.module('moscowMugs.controllers', [])
    chart.draw(data, options);
  }
 
-//chart
+//chart for avg likes per type of posted content
 google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChartposts);
     function drawChartposts() {
