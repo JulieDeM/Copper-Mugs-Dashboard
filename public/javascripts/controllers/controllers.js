@@ -530,18 +530,19 @@ google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ['ID', 'X', 'Y', 'Temperature'],
+        ['ID', 'Cost', 'Clicks', 'Impressions'],
         ['',   80,  167,      120],
         ['',   79,  136,      130],
         ['',   78,  184,      50],
-        ['',   72,  278,      230],
+        ['',   72,  210,      230],
         ['',   81,  200,      210],
         ['',   72,  170,      100],
-        ['',   68,  477,      80]
+        ['',   68,  250,      80]
       ]);
 
       var options = {
         colorAxis: {colors: ['#7EBB8B', '#8F9DFA']},
+        chartitle:'Yearly Paid Impressions',
         backgroundColor: 'transparent',
         textStyle:{color: 'white'},
         titleTextStyle: {color: 'white'},
