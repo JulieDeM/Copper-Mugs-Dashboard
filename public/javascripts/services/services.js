@@ -3,10 +3,10 @@ angular.module('moscowMugs.factory', [])
 .factory('queries_apicall', function($http) {
     return {
         all: function() {
-            return $http.get('/api/mugs');
+            return $http.get('/api/cyprusadmin/all');
         },
         createUser: function(){
-          return $http.get('/api/mugs/create')
+          return $http.get('/api/cyprusadmin/create-new')
         }
     }
 })

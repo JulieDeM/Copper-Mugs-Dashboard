@@ -403,6 +403,10 @@ font-family: 'Oxygen', sans-serif;
   height: 10%;
   width: 50px;
 }
+.cardorig{
+  background-color: #2F333D;
+  width: 100%;
+}
 .right{
   float: right;
   width:85%;

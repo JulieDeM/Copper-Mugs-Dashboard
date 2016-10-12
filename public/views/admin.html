@@ -60,10 +60,8 @@
   </div>
 
   <div class="card" style="background-color:#2F333D; color: white; border: 1px solid white;">
-    <!-- <div id="chart_divtrends" style="width: 100%; height: 400px;"></div> -->
     <div id="columnchart_valuesposts" style="width: 100%; height: 400px;"></div>
     <div class="card-block">
-      <!-- <p class="card-title">Card title</p> -->
     </div>
   </div>
 </div>
@@ -109,7 +107,7 @@
   <hr>
   <button id="customreportadd" type="button" name="button" ng-click="toogleme = !toogleme; edit($qty)"> + Add a Custom Report</button>
 <br>
-  <select id="reportopt" ng-model="numbs" ng-hide="toogleme">
+  <select id="reportopt" ng-model="selectedOption" ng-hide="toogleme">
    <option ng-repeat="type in reports" ng-click="addrepo = !addrepo;" value="{{type}}">
    {{type}}
    </option>
@@ -123,14 +121,24 @@
     </div>
   </div>
 
-  <div class="card" ng-hide="addrepo" style="background-color:#2F333D; color: white; border: 1px solid white;">
+  <!-- <div class="card" ng-hide="addrepo" style="background-color:#2F333D; color: white; border: 1px solid white;">
     <img class="card-img-top" src="images/logo.png" alt="Card image cap">
     <div class="card-block">
       <p class="card-title">Card title</p>
     </div>
-  </div>
-
+  </div> -->
 </div>
+  <div class="audienceprofile" ng-if="selectedOption.includes('Bounce Rate')">
+
+      hey
+  </div>
+  <!-- <div class="cardorig"  style="background-color:#2F333D; color: white; border: 1px solid white;">
+    <img class="card-img-top" src="images/logo.png" alt="Card image cap">
+    <div class="card-block">
+      <p class="card-title">Card title</p>
+    </div>
+  </div> -->
+
 
 </aside>
 </div>

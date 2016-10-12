@@ -19,8 +19,6 @@ angular.module('moscowMugs.controllers', [])
 
 })
 
-
-
 .controller('facebookInfoController', function($scope, $http, cyprusfbFactory){
   $scope.list={};
   var fbdataagegender = cyprusfbFactory.data[16].values[2].value;
