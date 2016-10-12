@@ -52,13 +52,13 @@ angular.module('moscowMugs.controllers', [])
       google.charts.setOnLoadCallback(drawRegionsMap);
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
-          ['City', 'Fans'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
+          ['Country', 'Fans'],
+          ['China', 1],
+          ['United States', 189],
+          ['India', 1],
+          ['Canada', 8],
+          ['Australia', 2],
+          ['Italy', 5]
         ]);
         var options = {backgroundColor: "transparent",
         textStyle: { color: 'white'
@@ -71,84 +71,25 @@ angular.module('moscowMugs.controllers', [])
   //gets the key and object pairs for fbdata and gender
   // $scope.$apply();
 //google chart for the fb users -- age and gender
- google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChartgen);
-      function drawChartgen() {
-        var data = google.visualization.arrayToDataTable([
-          ['Age Range', 'Males', 'Females'],
-          ['18-24', 8, 10],
-          ['25-34', 44, 58],
-          ['35-44', 37, 35],
-          ['45-54', 2, 10],
-          ['55-64', 1, 20]
-        ]);
-        // var data = google.visualization.arrayToDataTable(bigAr)
-        var options = {
-          backgroundColor: 'transparent',
-          chart: {
-            title: 'Age of Facebook Fans',
-          },
-          annotations: {
-            textStyle: {
-              fontName: 'Oxygen',
-              fontSize: 10,
-              bold: true,
-              italic: true,
-              color: 'white'
-              }
-            }
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, options);
-      }
       // $scope.$apply();
-      google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChartfinal);
-    function drawChartfinal() {
-      var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
-        ["Copper", 8.94, "#b87333"],
-        ["Silver", 10.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"]
-      ]);
-
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-
-      var options = {
-        title: "",
-        width: 600,
-        height: 400,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-      chart.draw(view, options);
-  }
 
   google.charts.load("current", {packages:['corechart']});
       google.charts.setOnLoadCallback(drawChartposts);
       function drawChartposts() {
-        var data = google.visualization.arrayToDataTable([
+        var datas = google.visualization.arrayToDataTable([
           ["Type", "Avg Likes", { role: "style" } ],
           ["Text Only", 8.94, "#8F9DFA"],
           ["Picture", 10.49, "#7EBB8B"],
           ["Video", 19.30, "#5A9EC8"],
         ]);
 
-        var view = new google.visualization.DataView(data);
+        var view = new google.visualization.DataView(datas);
         view.setColumns([0, 1,
-                         { calc: "stringify",
-                           sourceColumn: 1,
-                           type: "string",
-                           role: "annotation" },
-                         2]);
+         { calc: "stringify",
+           sourceColumn: 1,
+           type: "string",
+           role: "annotation" },
+         2]);
 
         var options = {
           title: "Avg Likes to Type of Facebook Post",
@@ -164,8 +105,8 @@ angular.module('moscowMugs.controllers', [])
             textStyle: {color: 'white'}
           },
         };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
-        chart.draw(view, options);
+        var chartinfo = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
+        chartinfo.draw(view, options);
     }
 })
 
@@ -371,12 +312,16 @@ angular.module('moscowMugs.controllers', [])
 
    var options = {
      title: '12 Month Trend of Moscow Mule Mugs - Google Trends',
-     hAxis: {title: 'Date', minValue: 0, maxValue: 15, height: 20, textStyle: {color: 'white'}, legendTextStyle: {color:'white'}},
-     vAxis: {title: 'Interest', minValue: 0, maxValue: 15, textStyle: {color: 'white'},legendTextStyle: {color:'white'}},
+     hAxis: {title: 'Date', minValue: 0, maxValue: 15, height: 50, textStyle: {color: 'white'}, legendTextStyle: {color:'white'}, titleTextStyle: {color: 'white'}},
+     vAxis: {title: 'Interest', minValue: 0, maxValue: 15, textStyle: {color: 'white'},legendTextStyle: {color:'white'}, titleTextStyle: {color: 'white'}},
      legend: 'none',
      backgroundColor: 'transparent',
      titleTextStyle: {color: 'white'},
-     legendTextStyle: {color:'white'}
+     legendTextStyle: {color:'white'},
+     chartArea: {
+       top: 55,
+       height: '50%'
+      }
    };
 
    var chart = new google.visualization.ScatterChart(document.getElementById('chart_divtrends'));
