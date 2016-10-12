@@ -71,43 +71,82 @@ angular.module('moscowMugs.controllers', [])
   //gets the key and object pairs for fbdata and gender
   // $scope.$apply();
 //google chart for the fb users -- age and gender
+// google.charts.load('current', {'packages':['corechart','bar']});
+//       google.charts.setOnLoadCallback(drawChartgen);
+//       function drawChartgen() {
+//         var data = google.visualization.arrayToDataTable([
+//           ['Age Range', 'Males', 'Females'],
+//           ['18-24', 8, 10],
+//           ['25-34', 44, 58],
+//           ['35-44', 37, 35],
+//           ['45-54', 2, 10],
+//           ['55-64', 1, 20]
+//         ]);
+//         // var data = google.visualization.arrayToDataTable(bigAr)
+//         var options = {
+//           // backgroundColor: 'transparent',
+//           chart: {
+//             title: 'Age of Facebook Fans',
+//             backgroundColor: 'transparent'
+//           },
+//           annotations: {
+//             textStyle: {
+//               fontName: 'Oxygen',
+//               fontSize: 10,
+//               bold: true,
+//               italic: true,
+//               color: 'white',
+//               fill: 'none'
+//               }
+//             },
+//             attributes: {
+//               fill: 'none'
+//             }
+//             // backgroundColor: { fill:'transparent' },
+//             bars: 'horizontal' // Required for Material Bar Charts.
+//         };
+//         var chart = new google.charts.Bar(document.getElementById('columnchart_materials'));
+//         chart.draw(data, options);
+//       }
+
       // $scope.$apply();
 
-  google.charts.load("current", {packages:['corechart']});
-      google.charts.setOnLoadCallback(drawChartposts);
-      function drawChartposts() {
-        var datas = google.visualization.arrayToDataTable([
-          ["Type", "Avg Likes", { role: "style" } ],
-          ["Text Only", 8.94, "#8F9DFA"],
-          ["Picture", 10.49, "#7EBB8B"],
-          ["Video", 19.30, "#5A9EC8"],
-        ]);
-
-        var view = new google.visualization.DataView(datas);
-        view.setColumns([0, 1,
-         { calc: "stringify",
-           sourceColumn: 1,
-           type: "string",
-           role: "annotation" },
-         2]);
-
-        var options = {
-          title: "Avg Likes to Type of Facebook Post",
-          titleTextStyle: {color: 'white'},
-          textStyle: {color: 'white'},
-          bar: {groupWidth: "95%", textStyle: {color: 'white'}},
-          backgroundColor: 'transparent',
-          legend: { position: "none" },
-          vAxis: {
-            textStyle: {color: 'white'}
-          },
-          hAxis: {
-            textStyle: {color: 'white'}
-          },
-        };
-        var chartinfo = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
-        chartinfo.draw(view, options);
-    }
+  // google.charts.load("current", {packages:['corechart']});
+  //     google.charts.setOnLoadCallback(drawChartposts);
+  //     function drawChartposts() {
+  //       var datas = google.visualization.arrayToDataTable([
+  //         ["Post", "Post Reach", { role: "style" } ],
+  //         ["Recipes", 260 , "#5A9EC8"],
+  //         ["Real review", 192, "#8F9DFA"],
+  //         ["Timeline photos", 154, "#7EBB8B"],
+  //       ]);
+  //
+  //       var view = new google.visualization.DataView(datas);
+  //       view.setColumns([0, 1,
+  //        { calc: "stringify",
+  //          sourceColumn: 1,
+  //          type: "string",
+  //          role: "annotation" },
+  //        2]);
+  //
+  //       var options = {
+  //         title: "Top Facebook Post",
+  //         titleTextStyle: {color: 'white'},
+  //         textStyle: {color: 'white'},
+  //         bar: {groupWidth: "95%", textStyle: {color: 'white'}},
+  //         text: { fill: 'white'},
+  //         backgroundColor: 'transparent',
+  //         legend: { position: "none" },
+  //         vAxis: {
+  //           textStyle: {color: 'white'}
+  //         },
+  //         hAxis: {
+  //           textStyle: {color: 'white'}
+  //         },
+  //       };
+  //       var chartinfo = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
+  //       chartinfo.draw(view, options);
+  //   }
 })
 
 // *******************
@@ -159,10 +198,13 @@ angular.module('moscowMugs.controllers', [])
       donutOut.push(donutIn)
     });
       donutOut.sort()
+      donutOut.unshift(['New ', 'Returning'])
       console.log(donutOut);
   }
 
 //google charts donut chart
+
+
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart1);
   google.charts.setOnLoadCallback(drawChart2);
@@ -173,6 +215,7 @@ angular.module('moscowMugs.controllers', [])
       ['New',     11],
       ['Returning',      2]
     ]);
+    // var data = google.visualization.arrayToDataTable(donutOut);
   var options = {
     pieHole: 0.4,
     pieSliceBorderColor: 'none',
@@ -364,6 +407,7 @@ google.charts.load("current", {packages:['corechart']});
         hAxis: {
           textStyle: {color: 'white'}
         },
+        chartArea:{textStyle: {color: 'white'}},
       };
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
       chart.draw(view, options);
