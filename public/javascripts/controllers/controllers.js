@@ -95,7 +95,7 @@ angular.module('moscowMugs.controllers', [])
           title: "Avg Likes to Type of Facebook Post",
           titleTextStyle: {color: 'white'},
           textStyle: {color: 'white'},
-          bar: {groupWidth: "95%"},
+          bar: {groupWidth: "95%", textStyle: {color: 'white'}},
           backgroundColor: 'transparent',
           legend: { position: "none" },
           vAxis: {
@@ -166,6 +166,7 @@ angular.module('moscowMugs.controllers', [])
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart1);
   google.charts.setOnLoadCallback(drawChart2);
+
   function drawChart1() {
     var data = google.visualization.arrayToDataTable([
       ['New ', 'Returning'],
@@ -352,6 +353,8 @@ google.charts.load("current", {packages:['corechart']});
         title: "Avg Likes to Type of Facebook Post",
         titleTextStyle: {color: 'white'},
         textStyle: {color: 'white'},
+        color: 'white',
+        textfill: 'white',
         bar: {groupWidth: "95%"},
         backgroundColor: 'transparent',
         legend: { position: "none" },
@@ -364,6 +367,46 @@ google.charts.load("current", {packages:['corechart']});
       };
       var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_valuesposts"));
       chart.draw(view, options);
+  }
+
+  //extra graph, bouncerate
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart6);
+
+  function drawChart6() {
+   var data = google.visualization.arrayToDataTable([
+     ['Week', 'Boune Rate'],
+     ['09/01',  10],
+     ['09/09',  11.1],
+     ['09/17',  13],
+     ['09/24',  11.11]
+   ]);
+   var options = {
+     title: 'Bounce Rate Week Over Week - September 2016',
+     colors:['#8F9DFA'],
+     curveType: 'function',
+     backgroundColor: 'transparent',
+     chartArea:{left:40,top:26,right:15,width:'100%',height: '60%'},
+     vAxis: {
+       textStyle: {color: 'white'}
+     },
+     hAxis: {
+       textStyle: {color: 'white'}
+     },
+    textStyle: {
+      fontName: 'Times-Roman',
+      fontSize: 18,
+      bold: false,
+      italic: true,
+      color: 'white',
+      auraColor: '#d799ae',
+      opacity: 0.8
+    },
+    titleTextStyle: {color: 'white'},
+    legend: 'none'
+   };
+   var chart = new google.visualization.LineChart(document.getElementById('curve_chartb'));
+   chart.draw(data, options);
   }
 })
 
@@ -577,7 +620,6 @@ google.charts.load("current", {packages:['corechart']});
 
 // homePageController
 .controller('homePageController', function($scope){
-  console.log('hello dog');
   $scope.view={}
   $scope.view.hey = "hello";
 
